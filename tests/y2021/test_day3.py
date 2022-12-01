@@ -1,3 +1,5 @@
+from aoc.y2021.day3 import clean_input, count, part1, part2
+
 test_input = """00100
 11110
 10110
@@ -11,6 +13,16 @@ test_input = """00100
 00010
 01010"""
 
+data = clean_input(test_input)
+
+
+def test_count():
+    assert count(data) == [0, 1, 0, 0, 1]
+
 
 def test_part1():
     assert part1(data) == 198
+
+
+def test_part2():
+    assert part2(data) == 230

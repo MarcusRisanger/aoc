@@ -12,15 +12,16 @@ For each task there is a corresponding test that uses the sample data and answer
 
 ## 2022 AOC
 
-| Day | Stars           | Comment 
-|-----|-----------------|---------
-| 1   | :star::star:    | Straightforward solutions for day 1.
-| 2   |     |        
+| Day   | Stars         | Comment 
+|-------|---------------|---------
+| 1     | :star::star:  | Straightforward solutions for day 1.
+| 2     |  |        
 
 ## 2021 AOC (Incomplete)
 
-| Day | Stars           | Comment 
-|-----|-----------------|---------
-| 1   | :star::star:    | Solved using simple list comprehensions.
-| 2   | :star::star:    | Using `if-elif` to handle submarine instructions.
+| Day   | Stars         | Comment 
+|-------|---------------|---------
+| 1     | :star::star:  | Solved using simple list comprehensions.
+| 2     | :star::star:  | Using `if-elif` to handle submarine instructions.
+| 3     | :star::star:  | Some effort going in to handling data in a compact way. Could be more readable.
 
