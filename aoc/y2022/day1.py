@@ -1,23 +1,21 @@
-def clean_input(data: str) -> list[list[int]]:
-    out = [[]]
-    for row in data.splitlines():
-        if row == "":
-            out.append([])
-        else:
-            out[-1].append(int(row))
-    return out
+def clean_input(data: str) -> list[int]:
+    """Cleans input data using simple splits.
+    Splits string into blocks on double line break.
+    Sums the integers of each block, output contains
+    one list element per elf."""
+    return [sum(map(int, b.split("\n"))) for b in data.split("\n\n")]
 
 
-def part1(data: list[list[int]]) -> int:
+def part1(data: list[int]) -> int:
     """How many calories are carried by the
     elf that carries the most calories?"""
-    return max(sum(i) for i in data)
+    return max(data)
 
 
 def part2(data: list[list[int]]) -> int:
     """How many calories are carried in total by
     the three elves carrying the most calories?"""
-    return sum(sorted([sum(i) for i in data], reverse=True)[:3])
+    return sum(sorted(data, reverse=True)[:3])
 
 
 if __name__ == "__main__":

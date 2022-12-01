@@ -1,7 +1,6 @@
 from aoc.y2022.day1 import clean_input, part1, part2
 
-test_input = """
-1000
+test_input = """1000
 2000
 3000
 
