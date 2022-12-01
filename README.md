@@ -25,4 +25,5 @@ For each task there is a corresponding test that uses the sample data and answer
 | 2     | :star::star:  | Using `if-elif` to handle submarine instructions.
 | 3     | :star::star:  | Some effort going in to handling data in a compact way. Could be more readable.
 | 4     | :star::star:  | Very fun problem where it makes sense to model the boards as a dict instead of nested lists.
-| 5     | :star::star:  | A bit messy `if-elif` but it works. 
+| 5     | :star::star:  | A bit messy to follow the logic, but more compact than evaluating each line for being either straight or diagonal.
+| 6     | :star::star:  | Avoid the temptation to store each fish as an element in a list...

@@ -17,7 +17,9 @@ def clean_input(input_data: str) -> tuple[int, int, int, int]:
 
 def get_hits(x1: int, x2: int) -> list[int]:
     """Output steps based on one-dimensional coordinate difference."""
+    # To handle cases where the line is drawn in negative direction
     sort = 1 if x2 > x1 else -1
+    # To set the proper arguments for range
     x1, x2 = min([x1, x2]), max([x1, x2])
     return [*range(x1, x2 + 1)][::sort]
 
