@@ -24,8 +24,8 @@ def count(data: list[str], index=None, prefer=None) -> int | list[int]:
             c[i] += int(row[i])
     if index is not None:
         value = 1 if (check := next(iter(c.values())) / len(data)) > 0.5 else 0
-        # "Flipping" but if preference is 0 - scrubber requires output of bit that
-        # has fewer occurrences and 0 if a tie.
+        # "Flipping" but if preference is 0 - scrubber requires
+        # output of bit that has fewer occurrences and 0 if a tie.
         value = 1 - value if prefer == 0 else value
         return prefer if check == 0.500 else value
     return [1 if v / len(data) < 0.5 else 0 for _, v in c.items()]
@@ -41,6 +41,7 @@ def row_filter(data: list[str], prefer=1) -> str:
 
 
 def part1(data: list[str]) -> int:
+    """Returns the product of the gamma and epsilon functions."""
     gamma_bits = count(data)
     gamma = int("".join(map(str, gamma_bits)), 2)
     epsilon = int("".join(map(str, [1 - val for val in gamma_bits])), 2)
@@ -48,6 +49,7 @@ def part1(data: list[str]) -> int:
 
 
 def part2(data: list[str]) -> int:
+    """Returns the product of the oxgen and scrubber functions."""
     oxygen = int(row_filter(data, prefer=1), 2)
     scrubber = int(row_filter(data, prefer=0), 2)
     return oxygen * scrubber

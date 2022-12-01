@@ -40,12 +40,12 @@ def solve_board(draws: list[int], board: dict[int, str]) -> tuple[int, int]:
                 return i_, draw * sum(board.keys())
 
 
-def part1(draws: list[int], boards: list[dict[int, str]]):
+def part1(draws: list[int], boards: list[dict[int, str]]) -> int:
     """Returns the score for the first solved board."""
     return min([solve_board(draws, board) for board in boards], key=lambda x: x[0])[1]
 
 
-def part2(draws: list[int], boards: list[dict[int, str]]):
+def part2(draws: list[int], boards: list[dict[int, str]]) -> int:
     """Returns the score for the final solved board."""
     return max([solve_board(draws, board) for board in boards], key=lambda x: x[0])[1]
 

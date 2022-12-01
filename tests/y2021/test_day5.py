@@ -1,4 +1,4 @@
-from aoc.y2021.day5 import clean_input, part1, part2
+from aoc.y2021.day5 import clean_input, get_hits, part1, part2
 
 
 test_input = """0,9 -> 5,9
@@ -15,6 +15,8 @@ test_input = """0,9 -> 5,9
 
 def test_clean_input():
     assert clean_input(test_input)[:2] == [[0, 9, 5, 9], [8, 0, 0, 8]]
+    assert get_hits(*[0, 4]) == [0, 1, 2, 3, 4]
+    assert get_hits(*[4, 0]) == [4, 3, 2, 1, 0]
 
 
 def test_part1():

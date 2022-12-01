@@ -5,6 +5,7 @@ AOC 2021 Day 5:
 """
 
 from collections import defaultdict
+from itertools import zip_longest
 
 
 def clean_input(input_data: str) -> tuple[int, int, int, int]:
@@ -14,41 +15,35 @@ def clean_input(input_data: str) -> tuple[int, int, int, int]:
     ]
 
 
+def get_hits(x1: int, x2: int) -> list[int]:
+    """Output steps based on one-dimensional coordinate difference."""
+    sort = 1 if x2 > x1 else -1
+    x1, x2 = min([x1, x2]), max([x1, x2])
+    return [i for i in range(x1, x2 + 1)][::sort]
+
+
 def track_hits(coordinates: list[list[int]], part2: bool = False):
+    """Tracking hits of the diff coordinates."""
     hits = defaultdict(int)
     for x1, y1, x2, y2 in coordinates:
-        # Straights
-        if x1 == x2:
-            ys = sorted([int(y1), int(y2)])
-            for y in range(ys[0], ys[1] + 1):
-                hits[f"r{x1}c{y}"] += 1
-        elif y1 == y2:
-            xs = sorted([int(x1), int(x2)])
-            for x in range(xs[0], xs[1] + 1):
-                hits[f"r{x}c{y1}"] += 1
-        # Diagonals
-        elif part2 and (x1 - x2 == y1 - y2):
-            steps = abs(x1 - x2) + 1
-            x = min([x1, x2])
-            y = min([y1, y2])
-            for i in range(steps):
-                hits[f"r{x+i}c{y+i}"] += 1
-        elif part2 and (x1 - x2 == -(y1 - y2)):
-            steps = abs(x1 - x2) + 1
-            if x2 > x1:
-                for i in range(steps):
-                    hits[f"r{x1+i}c{y1-i}"] += 1
-            else:
-                for i in range(steps):
-                    hits[f"r{x1-i}c{y1+i}"] += 1
+        if x1 == x2 or y1 == y2 or part2:
+            x_hits, y_hits = get_hits(x1, x2), get_hits(y1, y2)
+            padding = x1 if len(x_hits) == 1 else y1
+            for hit in zip_longest(x_hits, y_hits, fillvalue=padding):
+                hits[hit] += 1
+
     return sum(1 for v in hits.values() if v > 1)
 
 
-def part1(coordinates: list[list[int]]):
+def part1(coordinates: list[list[int]]) -> int:
+    """Returns number of coordinate points with line overlaps
+    for straight lines only."""
     return track_hits(coordinates)
 
 
-def part2(coordinates: list[list[int]]):
+def part2(coordinates: list[list[int]]) -> int:
+    """Returns number of coordinate points with line overlaps,
+    for straight and diagonal lines."""
     return track_hits(coordinates, part2=True)
 
 
