@@ -23,6 +23,7 @@ def clean_input(
 
 
 def solve_board(draws: list[int], board: dict[int, str]) -> tuple[int, int]:
+    """Solves a single bingo board using the list of draws."""
     board = {k: v for k, v in board.items()}  # Create deep copy ..
     lines = defaultdict(int)
     for i_, draw in enumerate(draws):
@@ -34,19 +35,14 @@ def solve_board(draws: list[int], board: dict[int, str]) -> tuple[int, int]:
                 return i_, draw * sum(board.keys())
 
 
-def play_bingo(draws: list[int], boards: list[dict[int, str]]) -> list[tuple[int, int]]:
-    results = []
-    for board in boards:
-        results.append(solve_board(draws, board))
-    return results
+def part1(draws: list[int], boards: list[dict[int, str]]):
+    """Returns the score for the first solved board."""
+    return min([solve_board(draws, board) for board in boards], key=lambda x: x[0])[1]
 
 
-def part1(**kwargs):
-    return min(play_bingo(**kwargs), key=lambda x: x[0])[1]
-
-
-def part2(**kwargs):
-    return max(play_bingo(**kwargs), key=lambda x: x[0])[1]
+def part2(draws: list[int], boards: list[dict[int, str]]):
+    """Returns the score for the final solved board."""
+    return max([solve_board(draws, board) for board in boards], key=lambda x: x[0])[1]
 
 
 if __name__ == "__main__":
