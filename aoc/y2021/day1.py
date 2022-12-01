@@ -1,3 +1,10 @@
+"""
+AOC 2021 Day 1: 
+  - Part 1: Evaluating contiguous list elements
+  - Part 2: Evaluating a moving selection of contiguous list elements
+"""
+
+
 def clean_input(input_data: str) -> list[list[int]]:
     return list(map(int, input_data.splitlines()))
 

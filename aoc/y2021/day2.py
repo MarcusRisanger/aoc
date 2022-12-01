@@ -1,3 +1,10 @@
+"""
+AOC 2021 Day 2: 
+  - Part 1: Applying list-based command instructions
+  - Part 2: Applying more complicated command instructions
+"""
+
+
 def clean_input(input_data: str) -> list[tuple[str, int]]:
     return [(comm.split()[0], int(comm.split()[1])) for comm in input_data.splitlines()]
 

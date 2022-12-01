@@ -1,3 +1,9 @@
+"""
+AOC 2021 Day 3: 
+  - Part 1: Scanning and evaluating data structures 
+  - Part 2: Iteratively filtering data structures
+"""
+
 from collections import defaultdict
 
 
