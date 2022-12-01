@@ -10,6 +10,10 @@ forward 2"""
 data = clean_input(test_input)
 
 
+def test_clean_input():
+    assert data[:3] == [("forward", 5), ("down", 5), ("forward", 8)]
+
+
 def test_part1():
     assert part1(data) == 150
 

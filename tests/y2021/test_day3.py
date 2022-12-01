@@ -16,6 +16,10 @@ test_input = """00100
 data = clean_input(test_input)
 
 
+def test_clean_input():
+    assert data[:2] == ["00100", "11110"]
+
+
 def test_count():
     assert count(data) == [0, 1, 0, 0, 1]
 

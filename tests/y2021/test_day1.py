@@ -14,6 +14,10 @@ test_input = """199
 data = clean_input(test_input)
 
 
+def test_clean_input():
+    assert data[:3] == [199, 200, 208]
+
+
 def test_part1():
     assert part1(data) == 7
 
