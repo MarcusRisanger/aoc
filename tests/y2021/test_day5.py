@@ -1,5 +1,5 @@
 from aoc.y2021.day5 import clean_input, get_hits, part1, part2
-
+from aocd.models import Puzzle
 
 test_input = """0,9 -> 5,9
 8,0 -> 0,8
@@ -12,6 +12,9 @@ test_input = """0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2"""
 
+data = clean_input(test_input)
+actual_data = clean_input(Puzzle(2021, 5).input_data)
+
 
 def test_clean_input():
     assert clean_input(test_input)[:2] == [[0, 9, 5, 9], [8, 0, 0, 8]]
@@ -20,12 +23,10 @@ def test_clean_input():
 
 
 def test_part1():
-    coordinates = clean_input(test_input)
-
-    assert part1(coordinates) == 5
+    assert part1(data) == 5
+    assert part1(actual_data) == 5698
 
 
 def test_part2():
-    coordinates = clean_input(test_input)
-
-    assert part2(coordinates) == 12
+    assert part2(data) == 12
+    assert part2(actual_data) == 15463
