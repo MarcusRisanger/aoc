@@ -1,4 +1,4 @@
-from aoc.y2022.day2 import clean_input, points, part1, part2
+from aoc.y2022.day2 import clean_input, part1, part2
 from aocd.models import Puzzle
 
 test_input = """A Y
@@ -10,13 +10,7 @@ actual_data = clean_input(Puzzle(2022, 2).input_data)
 
 
 def test_clean_input():
-    assert data == [("A", "Y"), ("B", "X"), ("C", "Z")]
-
-
-def test_points():
-    assert points("A", "Y") == 8
-    assert points("B", "X") == 1
-    assert points("C", "Z") == 6
+    assert data == ["AY", "BX", "CZ"]
 
 
 def test_day1_part1():
