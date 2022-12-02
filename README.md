@@ -15,7 +15,7 @@ For each task there is a corresponding test that uses the sample data and answer
 | Day   | Stars         | Comment 
 |-------|---------------|---------
 | 1     | :star::star:  | Straightforward solutions for day 1.
-| 2     |  |        
+| 2     | :star::star:  | Somewhat brute force by using dictionaries to lay out each outcome.        
 
 ## 2021 AOC (Incomplete)
 
