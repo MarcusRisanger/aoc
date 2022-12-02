@@ -1,4 +1,4 @@
-def clean_input(data: str) -> list[tuple[str, str]]:
+def clean_input(data: str) -> list[str]:
     """Cleans input data into pairs of instructions."""
     return [i.replace(" ", "") for i in data.splitlines()]
 
@@ -11,7 +11,7 @@ def part1(data: list[str]) -> int:
     return sum([scores.index(game) // 2 for game in data])
 
 
-def part2(data: list[list[int]]) -> int:
+def part2(data: list[str]) -> int:
     """What will be the player score if you shape throw according to instructions?"""
     scores = "  BXCXAXAYBYCYCZAZBZ"
     return sum([scores.index(game) // 2 for game in data])
