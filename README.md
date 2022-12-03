@@ -15,7 +15,7 @@ For each task there is a corresponding test that uses the sample data and answer
 | Day   | Stars         | Comment 
 |-------|---------------|---------
 | 1     | :star::star:  | Straightforward solutions for day 1.
-| 2     |  |        
+| 2     | :star::star:  | Using an approach with string indexing and integer division based on game score order.       
 
 ## 2021 AOC (Incomplete)
 
