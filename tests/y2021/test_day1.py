@@ -1,16 +1,7 @@
-from aoc.y2021.day1 import clean_input, part1, part2
+from aoc.y2020.day1 import clean_input, part1, part2
 from aocd.models import Puzzle
 
-test_input = """199
-200
-208
-210
-200
-207
-240
-269
-260
-263"""
+test_input = """"""
 
 data = clean_input(test_input)
 actual_data = clean_input(Puzzle(2021, 1).input_data)
