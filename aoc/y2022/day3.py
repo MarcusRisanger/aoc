@@ -12,6 +12,8 @@ def part1(data: list[tuple[str, str]]) -> int:
 
 
 def part1_verbose(data: list[tuple[str, str]]) -> int:
+    """Returns sum of priorities of misplaced items in rucksacks.
+    Verbose solution to make steps clearer."""
     all_letters = lower + upper
     priorities = dict()
     for i, letter in enumerate(all_letters):
@@ -29,8 +31,16 @@ def part1_verbose(data: list[tuple[str, str]]) -> int:
 
 
 def part2(data: list[str]):
+    """Returns sum of priorities of shared items across groups of three
+    contiguous rucksacks."""
     prios = {k: v + 1 for v, k in enumerate(lower + upper)}
-    pass
+    groups = [data[i : i + 3] for i in range(0, len(data), 3)]
+    out = 0
+    for group in groups:
+        # Taking advantage of unpacking the list containing the sets of stuff
+        sets = set.intersection(*[set("".join(g)) for g in group])
+        out += prios[next(iter(sets))]
+    return out
 
 
 if __name__ == "__main__":
@@ -42,4 +52,4 @@ if __name__ == "__main__":
 
     # Submit answers
     puzzle.answer_a = part1(input_data)
-    # puzzle.answer_b = part2(input_data)
+    puzzle.answer_b = part2(input_data)

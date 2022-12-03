@@ -35,6 +35,6 @@ def test_day1_part1_vb():
     assert part1_verbose(actual_data) == 7850
 
 
-# def test_day1_part2():
-#     assert part2(data) == 12
-#     assert part2(actual_data) == 12111
+def test_day1_part2():
+    assert part2(data) == 70
+    assert part2(actual_data) == 2581
