@@ -1,27 +1,27 @@
+import re
+
+
 def clean_input(input_data: str):
-    return [
-        list(map(int, s.replace("-", ",").split(","))) for s in input_data.splitlines()
-    ]
+    return [list(map(int, re.findall(r"\d+", s))) for s in input_data.splitlines()]
+
+
+def process_line(line: list[int], part2=False):
+    a, b, c, d = line
+    a, b = set(range(a, b + 1)), set(range(c, d + 1))
+    if part2:
+        return len(a & b) > 0
+    else:
+        return max([len(a), len(b)]) == len(a | b)
 
 
 def part1(input_data):
     """Returns number of instruction pairs where one completely covers the other."""
-    nums = 0
-    for a1, a2, b1, b2 in input_data:
-        a, b = set(range(a1, a2 + 1)), set(range(b1, b2 + 1))
-        if max([len(a), len(b)]) == len(a | b):
-            nums += 1
-    return nums
+    return sum(map(process_line, input_data))
 
 
 def part2(input_data):
     """Returns number of instruction pairs with any overlap."""
-    nums = 0
-    for a1, a2, b1, b2 in input_data:
-        a, b = set(range(a1, a2 + 1)), set(range(b1, b2 + 1))
-        if len(a & b) > 0:
-            nums += 1
-    return nums
+    return sum(map(lambda i: process_line(i, True), input_data))
 
 
 if __name__ == "__main__":
