@@ -7,8 +7,7 @@ def clean_input(input_data: str) -> list[tuple[str, str]]:
 
 def part1(data: list[tuple[str, str]]) -> int:
     """Returns sum of priorities of misplaced items in rucksacks."""
-    prios = {k: v + 1 for v, k in enumerate(ascii_letters)}
-    return sum([prios[next(iter(set(a) & set(b)))] for a, b in data])
+    return sum([ascii_letters.index(next(iter(set(a) & set(b)))) + 1 for a, b in data])
 
 
 def part1_verbose(data: list[tuple[str, str]]) -> int:
@@ -33,13 +32,12 @@ def part1_verbose(data: list[tuple[str, str]]) -> int:
 def part2(data: list[str]):
     """Returns sum of priorities of shared items across groups of three
     contiguous rucksacks."""
-    prios = {k: v + 1 for v, k in enumerate(ascii_letters)}
     groups = [data[i : i + 3] for i in range(0, len(data), 3)]
     out = 0
     for group in groups:
         # Taking advantage of unpacking the list containing the sets of stuff
         sets = set.intersection(*[set("".join(g)) for g in group])
-        out += prios[next(iter(sets))]
+        out += ascii_letters.index(next(iter(sets))) + 1
     return out
 
 
