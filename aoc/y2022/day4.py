@@ -1,15 +1,14 @@
 def clean_input(input_data: str):
-    return [s.split(",") for s in input_data.splitlines()]
+    return [
+        list(map(int, s.replace("-", ",").split(","))) for s in input_data.splitlines()
+    ]
 
 
 def part1(input_data):
     """Returns number of instruction pairs where one completely covers the other."""
     nums = 0
-    for a, b in input_data:
-        a1, a2 = a.split("-")
-        b1, b2 = b.split("-")
-        a = set(range(int(a1), int(a2) + 1))
-        b = set(range(int(b1), int(b2) + 1))
+    for a1, a2, b1, b2 in input_data:
+        a, b = set(range(a1, a2 + 1)), set(range(b1, b2 + 1))
         if max([len(a), len(b)]) == len(a | b):
             nums += 1
     return nums
@@ -18,11 +17,8 @@ def part1(input_data):
 def part2(input_data):
     """Returns number of instruction pairs with any overlap."""
     nums = 0
-    for a, b in input_data:
-        a1, a2 = a.split("-")
-        b1, b2 = b.split("-")
-        a = set(range(int(a1), int(a2) + 1))
-        b = set(range(int(b1), int(b2) + 1))
+    for a1, a2, b1, b2 in input_data:
+        a, b = set(range(a1, a2 + 1)), set(range(b1, b2 + 1))
         if len(a & b) > 0:
             nums += 1
     return nums

@@ -18,8 +18,8 @@ actual_data = clean_input(Puzzle(2022, 4).input_data)
 
 
 def test_clean_input():
-    assert minimal_data == [["1-2", "3-4"], ["1-3", "3-10"], ["10-12", "9-20"]]
-    assert data[:2] == [["2-4", "6-8"], ["2-3", "4-5"]]
+    assert minimal_data == [[1, 2, 3, 4], [1, 3, 3, 10], [10, 12, 9, 20]]
+    assert data[:2] == [[2, 4, 6, 8], [2, 3, 4, 5]]
 
 
 def test_day1_part1():
