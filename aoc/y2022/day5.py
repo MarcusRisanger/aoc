@@ -1,16 +1,15 @@
-from aocd.models import Puzzle
 from collections import defaultdict
 import re
 
 
 def clean_input(inp: str) -> tuple[list[list[str]], list[list[int]]]:
     crates_raw, instr = inp.split("\n\n")
-    gen = [[i for i in row[1::4]] for row in crates_raw.splitlines()]
+    gen = [row[1::4] for row in crates_raw.splitlines()]
     crates = defaultdict(list)
     for col, key in enumerate(gen[-1]):
         for row in gen[:-1]:
-            if (element := row[col]) != " ":
-                crates[int(key)].append(element)
+            if row[col] != " ":
+                crates[int(key)].append(row[col])
 
     return crates, [
         list(map(int, re.findall(r"\d+", row))) for row in instr.splitlines()
@@ -18,16 +17,14 @@ def clean_input(inp: str) -> tuple[list[list[str]], list[list[int]]]:
 
 
 def part1(crates: dict[int, list[str]], instructions: list[list[int]]):
-    for move, from_, to in instructions:
-        crates[to] = crates[from_][:move][::-1] + crates[to]
-        crates[from_] = crates[from_][move:]
+    for m, f, t in instructions:
+        crates[t], crates[f] = crates[f][:m][::-1] + crates[t], crates[f][m:]
     return "".join(v[0] for v in crates.values())
 
 
 def part2(crates: dict[int, list[str]], instructions: list[list[int]]):
-    for move, from_, to in instructions:
-        crates[to] = crates[from_][:move] + crates[to]
-        crates[from_] = crates[from_][move:]
+    for m, f, t in instructions:
+        crates[t], crates[f] = crates[f][:m] + crates[t], crates[f][m:]
     return "".join(v[0] for v in crates.values())
 
 
