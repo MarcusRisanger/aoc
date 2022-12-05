@@ -18,6 +18,7 @@ For each task there is a corresponding test that uses the sample data and answer
 | 2     | :star::star:  | Using an approach with string indexing and integer division based on game score order.     
 | 3     | :star::star:  | First part in a one-liner (added a verbose solution too), second part using `set.intersection()` on an unpacked list of sets, on elf groupings of 3.  
 | 4     | :star::star:  | Very similar parts 1 (full overlap) and 2 (partial overlap). Made a simple line processing function with outputs depending on part 1 or part 2 requirements, and used this with `map` (and a `lambda` for part 2).
+| 5     | :star::star:  | Worst part was to wrangle the input data into something useable. List slicing galore!
 
 ## 2021 AOC (Incomplete)
 

@@ -23,18 +23,18 @@ def test_clean_input():
     ]
 
 
-def test_day1_part1():
+def test_part1():
     assert part1(minimal_data) == 3
     assert part1(data) == 157
     assert part1(actual_data) == 7850
 
 
-def test_day1_part1_vb():
+def test_part1_vb():
     assert part1_verbose(minimal_data) == 3
     assert part1_verbose(data) == 157
     assert part1_verbose(actual_data) == 7850
 
 
-def test_day1_part2():
+def test_part2():
     assert part2(data) == 70
     assert part2(actual_data) == 2581

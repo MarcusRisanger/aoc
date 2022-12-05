@@ -22,13 +22,13 @@ def test_clean_input():
     assert data[:2] == [[2, 4, 6, 8], [2, 3, 4, 5]]
 
 
-def test_day1_part1():
+def test_part1():
     assert part1(minimal_data) == 1
     assert part1(data) == 2
     assert part1(actual_data) == 550
 
 
-def test_day1_part2():
+def test_part2():
     assert part2(minimal_data) == 2
     assert part2(data) == 4
     assert part2(actual_data) == 931
