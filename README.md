@@ -32,3 +32,4 @@ For each task there is a corresponding test that uses the sample data and answer
 | 6     | :star::star:  | Avoid the temptation to store each fish as an element in a list...
 | 7     | :star::star:  | Simpler problem compared to the previous days, but the solution is not of closed form. Mean sometimes does not work, and it is also necessary to check the next position to find the true minimum.
 | 8     | :star::star:  | Fun implementation of `/u/4HbQ`s amazing `match` solution using lengths known digit masks from `"1"` and `"4"` to uniquely identify each display digit.
+| 9     | :star::star:  | Part 1 was fairly easy, but part 2 was my first foray ever into flooding algorithms and (programmatic) recursion, and was difficult to get right.
