@@ -19,6 +19,7 @@ For each task there is a corresponding test that uses the sample data and answer
 | 3     | :star::star:  | First part in a one-liner (added a verbose solution too), second part using `set.intersection()` on an unpacked list of sets, on elf groupings of 3.  
 | 4     | :star::star:  | Very similar parts 1 (full overlap) and 2 (partial overlap). Made a simple line processing function with outputs depending on part 1 or part 2 requirements, and used this with `map` (and a `lambda` for part 2).
 | 5     | :star::star:  | Worst part was to wrangle the input data into something useable. List slicing galore!
+| 6     | :star::star:  | Regexed part 1, realized in part 2 that that was stupid. Implemented something more straightforward for part 2.
 
 ## 2021 AOC (Incomplete)
 
