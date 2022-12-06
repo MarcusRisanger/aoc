@@ -4,9 +4,9 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 
 ## Code structure
 
-For each task there is a function that cleans the Puzzle data, and one function per part A and B that takes the same cleaned input data.
+For each task there is a function that cleans the Puzzle data (unless the input data is just one long string, ref. 2022, day 6), and one function per part A and B that takes the same cleaned input data, with some minor variation for puzzles where part B requires some input from part A (ref. 2021, day 9).
 
-For each task there is a corresponding test that uses the sample data and answer provided per Puzzle.
+For each task there is a corresponding test that unit tests the data cleaning functions and parts 1 and 2 using both the provided sample data for each question and with the final answer provided per Puzzle. This is to allow for (slightly) easier refactoring of the code at a later stage.
 
 # Solved Tasks
 
