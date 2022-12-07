@@ -5,7 +5,7 @@ AOC 2021, Day 11:
 """
 
 
-def clean_input(input_data: str) -> dict[tuple[int, int] : int]:
+def clean_input(input_data: str) -> dict[tuple[int, int], int]:
     """Prepares octopi grid using x, y coordinates and initial value."""
     return {
         (x, y): int(val)
