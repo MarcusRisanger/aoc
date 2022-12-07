@@ -5,6 +5,8 @@ AOC 2021, Day 9:
 """
 
 from dataclasses import dataclass
+from collections.abc import Generator
+from math import prod
 
 
 @dataclass
@@ -12,6 +14,9 @@ class Coord:
     x: int
     y: int
     val: int
+
+    def __hash__(self) -> str:
+        return hash(repr(self))
 
 
 @dataclass
@@ -27,7 +32,7 @@ def clean_input(input_data: str) -> Grid:
     return Grid([list(map(int, line)) for line in input_data.splitlines()])
 
 
-def get_neighbors(c: Coord, g: Grid) -> list[Coord]:
+def get_neighbors(c: Coord, g: Grid) -> Generator[Coord]:
     """Neighbors in this case are only up/down/left/right"""
     n = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     gen = (
@@ -36,7 +41,25 @@ def get_neighbors(c: Coord, g: Grid) -> list[Coord]:
         if (0 <= c.x + x < g.R) and (0 <= c.y + y < g.C)
     )
     for x, y in gen:
-        yield x, y
+        yield Coord(x, y, g.g[x][y])
+
+
+def get_basin_size(grid: Grid, start: Coord, visited: set = None, queue: set = None):
+    if visited is None:
+        visited = set()
+    if queue is None:
+        queue = set()
+    if start in visited:
+        queue.remove(start)
+    else:
+        visited.add(start)
+        queue.update(
+            n for n in get_neighbors(start, grid) if (n not in visited) and (n.val < 9)
+        )
+        if not queue:
+            return len(visited)
+        get_basin_size(grid, queue.pop(), visited, queue)
+    return len(visited)
 
 
 def part1(grid: Grid) -> tuple[int, list[Coord]]:
@@ -45,17 +68,14 @@ def part1(grid: Grid) -> tuple[int, list[Coord]]:
     for x in range(grid.R):
         for y in range(grid.C):
             c = Coord(x, y, grid.g[x][y])
-            if all(c.val < grid.g[n_x][n_y] for n_x, n_y in get_neighbors(c, grid)):
+            if all(c.val < grid.g[n.x][n.y] for n in get_neighbors(c, grid)):
                 troughs.append(c)
 
     return sum(c.val + 1 for c in troughs), troughs
 
 
-def part2(grd: Grid, coords: list[list[int]], troughs: list[Coord]):
-    def get_basin_size(grid: Grid, start: Coord):
-        pass
-
-    pass
+def part2(grid: Grid, troughs: list[Coord]):
+    return prod(sorted(list(map(lambda i: get_basin_size(grid, i), troughs)))[-3:])
 
 
 if __name__ == "__main__":
@@ -64,5 +84,5 @@ if __name__ == "__main__":
     puzzle = Puzzle(year=2021, day=9)
     height_map = clean_input(puzzle.input_data)
 
-    puzzle.answer_a, troughs = part1(*height_map)
-    # puzzle.answer_b = part2(*height_map, troughs)
+    puzzle.answer_a, troughs = part1(height_map)
+    puzzle.answer_b = part2(height_map, troughs)
