@@ -8,19 +8,14 @@ up 3
 down 8
 forward 2"""
 
-data = clean_input(test_input)
-actual_data = clean_input(Puzzle(2021, 2).input_data)
-
-
-def test_clean_input():
-    assert data[:3] == [("forward", 5), ("down", 5), ("forward", 8)]
+actual_data = Puzzle(2021, 2).input_data
 
 
 def test_part1():
-    assert part1(data) == 150
+    assert part1(test_input) == 150
     assert part1(actual_data) == 2073315
 
 
 def test_part2():
-    assert part2(data) == 900
+    assert part2(test_input) == 900
     assert part2(actual_data) == 1840311528

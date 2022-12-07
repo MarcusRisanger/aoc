@@ -9,34 +9,34 @@ def clean_input(input_data: str) -> list[tuple[str, int]]:
     return [(comm.split()[0], int(comm.split()[1])) for comm in input_data.splitlines()]
 
 
-def part1(instructions: list[tuple[str, int]]) -> int:
+def part1(input_data: str) -> int:
     """With the given instructions, what is the product of
     final depth and horizontal distance from start?"""
     horizontal, depth = 0, 0
-    for command, value in instructions:
-        match command, value:
+    for row in input_data.splitlines():
+        match row.split():
             case "forward", value:
-                horizontal += value
+                horizontal += int(value)
             case "down", value:
-                depth += value
+                depth += int(value)
             case "up", value:
-                depth -= value
+                depth -= int(value)
     return horizontal * depth
 
 
-def part2(instructions: list[tuple[str, int]]) -> int:
+def part2(input_data: str) -> int:
     """With the given instructions, what is the product of
     final depth and horizontal distance from start?"""
     horizontal, depth, aim = 0, 0, 0
-    for command, value in instructions:
-        match command, value:
+    for row in input_data.splitlines():
+        match row.split():
             case "forward", value:
-                horizontal += value
-                depth += value * aim
+                horizontal += int(value)
+                depth += int(value) * aim
             case "down", value:
-                aim += value
+                aim += int(value)
             case "up", value:
-                aim -= value
+                aim -= int(value)
     return horizontal * depth
 
 
@@ -45,8 +45,7 @@ if __name__ == "__main__":
 
     # Get puzzle details and set up input
     puzzle = Puzzle(year=2021, day=2)
-    input_data = clean_input(puzzle.input_data)
 
     # Submit answers
-    puzzle.answer_a = part1(input_data)
-    puzzle.answer_b = part2(input_data)
+    puzzle.answer_a = part1(puzzle.input_data)
+    puzzle.answer_b = part2(puzzle.input_data)
