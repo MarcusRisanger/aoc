@@ -1,4 +1,5 @@
 def clean_input(input_data: str) -> dict[str, int]:
+    """Consider refactoring to match case type structure"""
     instructions = input_data.replace("$ ls\n", "").splitlines()
     dirs = dict({"/": 0})
     current_dir: list[str] = []
