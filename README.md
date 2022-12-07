@@ -36,3 +36,4 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 8     | :star::star:  | Fun implementation of `/u/4HbQ`s amazing `match` solution using lengths known digit masks from `"1"` and `"4"` to uniquely identify each display digit.
 | 9     | :star::star:  | Part 1 was fairly easy, but part 2 was my first foray ever into flooding algorithms and (programmatic) recursion, and was difficult to get right.
 | 10    | :star::star:  | Keep track of the order of opening brackets and popping that list vs. a dict of bracket pairs proved to be an efficient strategy. Could be written more concise, but is at least quite readable. 
+| 11    | :star::star:  | Same algorithm for both parts, but slightly different outputs. Learned some nice tricks related to `octopi.get` to only return "truthy neighbors" to avoid re-incrementing already flashed octopi.
