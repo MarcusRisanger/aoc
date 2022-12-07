@@ -1,7 +1,7 @@
 """
 AOC 2021 Day 2: 
-  - Part 1: Applying list-based command instructions
-  - Part 2: Applying more complicated command instructions
+  - Part 1: Applying list-based command instructions using match-case
+  - Part 2: Applying more complicated command instructions using match-case
 """
 
 
@@ -14,12 +14,13 @@ def part1(instructions: list[tuple[str, int]]) -> int:
     final depth and horizontal distance from start?"""
     horizontal, depth = 0, 0
     for command, value in instructions:
-        if command == "forward":
-            horizontal += value
-        elif command == "down":
-            depth += value
-        elif command == "up":
-            depth -= value
+        match command, value:
+            case "forward", value:
+                horizontal += value
+            case "down", value:
+                depth += value
+            case "up", value:
+                depth -= value
     return horizontal * depth
 
 
@@ -28,13 +29,14 @@ def part2(instructions: list[tuple[str, int]]) -> int:
     final depth and horizontal distance from start?"""
     horizontal, depth, aim = 0, 0, 0
     for command, value in instructions:
-        if command == "forward":
-            horizontal += value
-            depth += value * aim
-        elif command == "down":
-            aim += value
-        elif command == "up":
-            aim -= value
+        match command, value:
+            case "forward", value:
+                horizontal += value
+                depth += value * aim
+            case "down", value:
+                aim += value
+            case "up", value:
+                aim -= value
     return horizontal * depth
 
 

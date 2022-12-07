@@ -31,12 +31,12 @@ def clean_input(input_data: str) -> dict[str, int]:
 
 def part1(input_data: dict[str, int]) -> int:
     """Returns size dirs with a size of at most 100000"""
-    return sum(v for v in input_data.values() if v <= 100000)
+    return sum(v for v in input_data.values() if v <= 100_000)
 
 
 def part2(input_data: dict[str, int]) -> int:
     """Returns size of smallest dir that can be deleted to free up enough space"""
-    return min(v for v in input_data.values() if v >= (-40000000 + input_data["/"]))
+    return min(v for v in input_data.values() if v >= (-40_000_000 + input_data["/"]))
 
 
 if __name__ == "__main__":

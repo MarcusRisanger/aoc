@@ -31,15 +31,15 @@ actual_data = clean_input(Puzzle(2022, 7).input_data)
 
 
 def test_clean_input():
-    assert data["/"], data["/a/"] == (48381165, 94853)
-    assert actual_data["/gnpd/dwqbhgc/sbnhc/"] == 731541
+    assert data["/"], data["/a/"] == (48_381_165, 94_853)
+    assert actual_data["/gnpd/dwqbhgc/sbnhc/"] == 731_541
 
 
 def test_part1():
-    assert part1(data) == 95437
-    assert part1(actual_data) == 1428881
+    assert part1(data) == 95_437
+    assert part1(actual_data) == 1_428_881
 
 
 def test_part2():
-    assert part2(data) == 24933642
-    assert part2(actual_data) == 10475598
+    assert part2(data) == 24_933_642
+    assert part2(actual_data) == 10_475_598
