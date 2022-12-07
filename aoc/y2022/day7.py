@@ -1,21 +1,31 @@
+"""
+AOC 2022, day 7:
+   - Cleaning input with match-case type solution instead of previous "regular" flow.
+   - Big improvement with using `itertools.accumulate` to handle directory names.
+   - Parts 1 and 2 are easy to produce on correctly parsed input.
+"""
+
+from collections import defaultdict
+from itertools import accumulate
+
+
 def clean_input(input_data: str) -> dict[str, int]:
-    """Consider refactoring to match case type structure"""
+    """Returns dict of directory keys and size values."""
     instructions = input_data.replace("$ ls\n", "").splitlines()
-    dirs = dict({"/": 0})
-    current_dir: list[str] = []
+    dirs = defaultdict(int)
     for row in instructions:
-        if row == "$ cd ..":
-            current_dir.pop()
-        elif "$ cd" in row:
-            current_dir.append(".".join(current_dir) + row.split()[-1])
-        else:
-            s, n = row.split()
-            if s == "dir":
-                dir_name = ".".join(current_dir) + n
-                dirs[dir_name] = 0
-            else:
-                for dir in current_dir:
-                    dirs[dir] += int(s)
+        match row.split():
+            case "$", "cd", "/":
+                current_dir = ["/"]
+            case "$", "cd", "..":
+                current_dir.pop()
+            case "$", "cd", dir:
+                current_dir.append(dir + "/")
+            case "dir", _:
+                pass
+            case size, _:
+                for dir in accumulate(current_dir):
+                    dirs[dir] += int(size)
     return dirs
 
 

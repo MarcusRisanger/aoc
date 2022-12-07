@@ -20,6 +20,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 4     | :star::star:  | Very similar parts 1 (full overlap) and 2 (partial overlap). Made a simple line processing function with outputs depending on part 1 or part 2 requirements, and used this with `map` (and a `lambda` for part 2).
 | 5     | :star::star:  | Worst part was to wrangle the input data into something useable. List slicing galore!
 | 6     | :star::star:  | Regexed part 1, realized in part 2 that that was stupid. Implemented something more straightforward for part 2.
+| 7     | :star::star:  | Another day where parsing the input data properly is way more difficult than the actual parts 1 and 2!
 
 ## 2021 AOC (Incomplete)
 
