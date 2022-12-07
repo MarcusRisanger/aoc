@@ -1,14 +1,12 @@
 def clean_input(input_data: str) -> dict[str, int]:
-    instructions = input_data.splitlines()
+    instructions = input_data.replace("$ ls\n", "").splitlines()
     dirs = dict({"/": 0})
     current_dir: list[str] = []
     for row in instructions:
-        if "cd .." in row:
+        if row == "$ cd ..":
             current_dir.pop()
         elif "$ cd" in row:
             current_dir.append(".".join(current_dir) + row.split()[-1])
-        elif "$ ls" in row:
-            pass
         else:
             s, n = row.split()
             if s == "dir":
