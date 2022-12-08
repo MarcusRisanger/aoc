@@ -1,46 +1,49 @@
-def clean_input(input_data: str) -> dict[tuple[int, int], int]:
-    return {
-        (x, y): val
-        for x, line in enumerate(input_data.splitlines())
-        for y, val in enumerate(line)
-    }
+from dataclasses import dataclass
 
 
-def is_visible(grid: dict[tuple[int, int], int], r: int, c: int):
-    x_max, y_max = max(grid)
-    return any(
-        [
-            all((grid[n] < grid[r, c]) for n in [(x + 1, c) for x in range(r, x_max)]),
-            all((grid[n] < grid[r, c]) for n in [(x, c) for x in range(0, r)]),
-            all((grid[n] < grid[r, c]) for n in [(r, y + 1) for y in range(c, y_max)]),
-            all((grid[n] < grid[r, c]) for n in [(r, y) for y in range(0, c)]),
-        ]
-    )
+@dataclass
+class Grid:
+    g: list[list[int]]
+    R: int
+    C: int
 
 
-def part1(input_data: dict[tuple[int, int], int]) -> int:
-    return sum(is_visible(input_data, *n) for n in input_data)
+def clean_input(input_data: str) -> Grid:
+    rows = input_data.splitlines()
+    return Grid([list(map(int, i)) for i in rows], len(rows) - 1, len(rows[0]) - 1)
 
 
-def scenic_score(grid: dict[tuple[int, int], int], r: int, c: int) -> int:
-    value = grid[(r, c)]
-    score = 1
-    for x, y in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-        step = 1
-        while True:
-            try:
-                if value <= grid[r + (x * step), c + (y * step)]:
-                    break
-            except:
-                step -= 1
+def evaluate_tree(grid: Grid, x: int, y: int) -> tuple[bool, int]:
+    tree_height = grid.g[x][y]
+    visible = False
+    scenic_score = 1
+    for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+        # Instantiate start point from given coordinate
+        xx, yy = x, y
+        trees_seen = 0
+        # Walk toward edge
+        while 0 < xx < grid.R and 0 < yy < grid.C:
+            trees_seen += 1
+
+            # If tree in next direction is as tall or taller, break
+            if grid.g[xx + dx][yy + dy] >= tree_height:
                 break
-            step += 1
-        score *= step
-    return score
+
+            # Increment
+            xx += dx
+            yy += dy
+
+        # If we reached beyond the edge
+        if xx == 0 or grid.R == xx or yy == 0 or grid.C == yy:
+            visible = True
+        scenic_score *= trees_seen
+    return visible, scenic_score
 
 
-def part2(input_data: dict[tuple[int, int], int]) -> int:
-    return max(scenic_score(input_data, *n) for n in input_data)
+def solve(grid: Grid):
+    coords = ((x, y) for x in range(len(grid.g)) for y in range(len(grid.g[0])))
+    results = list(map(lambda i: evaluate_tree(grid, *i), coords))
+    return sum(i[0] for i in results), max(i[1] for i in results)
 
 
 if __name__ == "__main__":
@@ -52,5 +55,4 @@ if __name__ == "__main__":
     input_data = clean_input(puzzle.input_data)
 
     # Submit answers
-    puzzle.answer_a = part1(input_data)
-    puzzle.answer_b = part2(input_data)
+    puzzle.answer_a, puzzle.answer_b = solve(input_data)
