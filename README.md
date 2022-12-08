@@ -21,6 +21,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 5     | :star::star:  | Worst part was to wrangle the input data into something useable. List slicing galore!
 | 6     | :star::star:  | Regexed part 1, realized in part 2 that that was stupid. Implemented something more straightforward for part 2.
 | 7     | :star::star:  | Another day where parsing the input data properly is way more difficult than the actual parts 1 and 2!
+| 8     | :star::star:  | Tried to program elegantly; failed. Part 1 was OK but runs very slowly. Part 2 code is just plain ugly.
 
 ## 2021 AOC (Incomplete)
 
