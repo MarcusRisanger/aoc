@@ -3,6 +3,7 @@ AOC 2021, Day 11:
   - Keeping track of neighbors and flashing
   - Parts 1 and 2 implements the same code with different exits
 """
+from aoc.utils import neighbors as n
 
 
 def clean_input(input_data: str) -> dict[tuple[int, int], int]:
@@ -14,25 +15,11 @@ def clean_input(input_data: str) -> dict[tuple[int, int], int]:
     }
 
 
-def get_neighbors(
-    x: int, y: int, octopi: dict[tuple[int, int]]
-) -> list[tuple[int, int]]:
+def get_octopi(x: int, y: int, octopi: dict[tuple[int, int]]) -> list[tuple[int, int]]:
     """Returns the neighboring octopi (incl. diagonal).
     Note that filter(octopi.get, []) does not return octopi
     where their value is 0 (filtered as falsy)."""
-    return filter(
-        octopi.get,
-        [
-            (x + 1, y + 1),
-            (x + 1, y),
-            (x + 1, y - 1),
-            (x, y + 1),
-            (x, y - 1),
-            (x - 1, y + 1),
-            (x - 1, y),
-            (x - 1, y - 1),
-        ],
-    )
+    return filter(octopi.get, n(x, y, shape="box"))
 
 
 def octopi_flashes(octopi: dict[tuple[int, int]]) -> tuple[int, int]:
@@ -50,7 +37,7 @@ def octopi_flashes(octopi: dict[tuple[int, int]]) -> tuple[int, int]:
             octopi[i] = 0
             flashes += 1
             # Incrementing neighbors that are != 0
-            for n in get_neighbors(*i, octopi):
+            for n in get_octopi(*i, octopi):
                 octopi[n] += 1
                 # If neighbor is pushed to flash, add to set
                 if octopi[n] > 9:
