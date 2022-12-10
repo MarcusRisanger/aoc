@@ -18,7 +18,7 @@ def part1(input_data: str):
     strength = 0
 
     for cycle, reg in eval_input(input_data):
-        if cycle % 20 == 0 and cycle % 40 != 0:
+        if cycle % 40 == 20:
             strength += cycle * reg
 
     return strength
