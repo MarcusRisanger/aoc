@@ -24,6 +24,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 8     | :star::star:  | After solving, I refactored the code with some inspiration from other solutions that followed the same base logic. I avoided the crazy `numpy` solutions since I don't have time to get comfortable with `np` syntax at this point, but probably should do that sooner or later.
 | 9     | :star::star:  | This was easy enough, refactored part 1 after reading part 2 text to generalize snek length. List of neighbors threw me off, should make a utils that gives back coordinates for the different "types" of neighbor, e.g. yield neighbors for U/D/L/R, yield neighbors for diagonals, etc.
 | 10    | :star::star:  | Created generator that yielded cycle and register value. From there it was a party of modulo to get the correct outputs. Ugly but works!
+| 11    | :star::star:  | Figured out the common denominator trick to make part 2 work - but that doesn't help when I ran the code on processed monkeys from Part 1!
 
 ## 2021 AOC (Incomplete)
 
