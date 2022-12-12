@@ -27,8 +27,17 @@ def test_touching():
     assert touching(0, 0, 0, 0) == True
     assert touching(0, 1, 0, 0) == True
     assert touching(-1, -1, 0, 0) == True
+    assert touching(0, 1, 0, 1) == True
+    assert touching(1, 1, 0, 0) == True
+    assert touching(0, 0, 1, 1) == True
+    assert touching(0, 1, 1, 0) == True
+    assert touching(1, -1, 0, 0) == True
     assert touching(2, -1, 0, 0) == False
     assert touching(-2, 1, 0, 0) == False
+    assert touching(0, 0, -2, 1) == False
+    assert touching(0, 0, 2, -1) == False
+    assert touching(2, 0, 0, 1) == False
+    assert touching(-2, 0, 0, 1) == False
 
 
 def test_move_head():
@@ -43,6 +52,7 @@ def test_move_tail():
     assert move_tail(2, -1, 0, 0) == (1, -1)
     assert move_tail(1, 1, 0, 0) == (0, 0)
     assert move_tail(-2, 1, 0, 0) == (-1, 1)
+    assert move_tail(0, 0, -2, 1) == (-1, 0)
 
 
 def test_SNEK():
