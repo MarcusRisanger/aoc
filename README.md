@@ -25,6 +25,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 9     | :star::star:  | This was easy enough, refactored part 1 after reading part 2 text to generalize snek length. List of neighbors threw me off, should make a utils that gives back coordinates for the different "types" of neighbor, e.g. yield neighbors for U/D/L/R, yield neighbors for diagonals, etc.
 | 10    | :star::star:  | Created generator that yielded cycle and register value. From there it was a party of modulo to get the correct outputs. Ugly but works!
 | 11    | :star::star:  | Figured out the common denominator trick to make part 2 work - but that doesn't help when I ran the code on processed monkeys from Part 1!
+| 12    | :star::star:  | Another task where I didn't read the task properly - took a while to understand that any elevation *drop* was acceptable. Part 2 was originally iterating the `climb` function for all `a`-nodes but I read a tip on Reddit that said if you had implemented a Dijkstra type algorithm, the easiest was to pass all `a`-nodes as live in the initial queue to get solve in one go.
 
 ## 2021 AOC (Incomplete)
 

@@ -9,7 +9,7 @@ def clean_input(input_data: str):
     for x, line in enumerate(input_data.splitlines()):
         for y, val in enumerate(line):
             if val == "S":
-                start = (x, y)
+                start = [(x, y)]
             if val == "E":
                 stop = (x, y)
             if val == "a":
@@ -29,10 +29,10 @@ def get_neighbors(x, y, nodes: dict):
                 yield x + dx, y + dy
 
 
-def climb(nodes: dict, start: tuple[int, int], stop: tuple[int, int]):
-    """DFS to target from start - returns fewest steps required."""
-    visited = {start: 0}
-    queue = [start]
+def climb(nodes: dict, start: list[tuple[int, int]], stop: tuple[int, int]):
+    """DFS from starting points to target - returns fewest steps required."""
+    visited = {i: 0 for i in start}
+    queue = [i for i in start]
     while queue:
         node = queue.pop(0)
         current_step = visited[node]
@@ -44,9 +44,10 @@ def climb(nodes: dict, start: tuple[int, int], stop: tuple[int, int]):
                 visited[(dx, dy)] = current_step + 1
 
 
-def find_scenic(nodes, stop, a_nodes):
-    """DFS to target from start - returns fewest steps required from any a-node."""
-    return min(filter(None, [climb(nodes, s, stop) for s in a_nodes]))
+def find_scenic_climb(nodes, start, stop, a_nodes):
+    """Special case where all `a`-nodes are entered as starting points.
+    Calculates the shortest path to stop for any node."""
+    return climb(nodes, start + a_nodes, stop)
 
 
 if __name__ == "__main__":
@@ -55,7 +56,6 @@ if __name__ == "__main__":
     puzzle = Puzzle(2022, 12)
 
     input_data = clean_input(puzzle.input_data)
-    nodes, start, stop, a_nodes = input_data
 
-    puzzle.answer_a = climb(nodes, start, stop)
-    puzzle.answer_b = find_scenic(nodes, stop, a_nodes)
+    puzzle.answer_a = climb(*input_data[:-1])
+    puzzle.answer_b = find_scenic_climb(*input_data)
