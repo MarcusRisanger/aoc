@@ -11,19 +11,27 @@ from itertools import accumulate
 
 def clean_input(input_data: str) -> dict[str, int]:
     """Returns dict of directory keys and size values."""
-    instructions = input_data.replace("$ ls\n", "").splitlines()
+    # Let's get rid of the entirely useless rows immediately
+    movements = input_data.replace("$ ls\n", "").splitlines()
     dirs = defaultdict(int)
-    for row in instructions:
+    # Loop over our tree movements
+    for row in movements:
         match row.split():
             case "$", "cd", "/":
+                # Moving into root - establish directory tree
                 current_dir = ["/"]
             case "$", "cd", "..":
+                # Moving out of a directory - remove last element
                 current_dir.pop()
             case "$", "cd", dir:
+                # Navigating into a directory - append to list
                 current_dir.append(dir + "/")
             case "dir", _:
+                # To not screw up the next case.. :D
                 pass
             case size, _:
+                # Increment directory size for all directoryies
+                # where the current directory resides
                 for dir in accumulate(current_dir):
                     dirs[dir] += int(size)
     return dirs
