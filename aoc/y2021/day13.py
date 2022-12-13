@@ -8,7 +8,7 @@ import numpy as np
 import re
 
 
-def clean_data(input_data: str) -> np.ndarray:
+def clean_input(input_data: str) -> tuple[np.ndarray, list[tuple[str, int]]]:
     """Parses x, y pairs into a boolean array.
     Parses instructions to a list."""
     dots, folds = input_data.split("\n\n")
@@ -48,5 +48,5 @@ if __name__ == "__main__":
 
     puzzle = Puzzle(2021, 13)
 
-    data = clean_data(puzzle.input_data)
+    data = clean_input(puzzle.input_data)
     puzzle.answer_a = fold_origami(*data)

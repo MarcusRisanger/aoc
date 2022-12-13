@@ -45,3 +45,4 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 11    | :star::star:  | Same algorithm for both parts, but slightly different outputs. Learned some nice tricks related to `octopi.get` to only return "truthy neighbors" to avoid re-incrementing already flashed octopi.
 | 12    | :star::star:  | Had to refactor my initial solution after seeing `/u/4HbQ`s solution on Reddit. I find recursion hard and this was a great example for me to understand.
 | 13    | :star::star:  | Numpy is still difficult, but refactoring my old solutions from last year is helping.
+| 14    | :star::star:  | Interesting exercise with dictionary abuse. First time I did this last year I created new strings like in the cheeky example but hit a brick wall for part 2.. obviously..
