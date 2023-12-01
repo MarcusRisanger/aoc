@@ -14,7 +14,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 
 | Day   | Stars         | Comment
 |-------|---------------|---------
-| 1     | :star:        | Straightforward solution.
+| 1     | :star::star:  | Straightforward solution for part 1. For part 2, need to be careful with replacing since the correct decoding of e.g "nineight" is 98.
 
 
 ## 2022 AOC

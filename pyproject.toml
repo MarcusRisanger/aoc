@@ -6,8 +6,7 @@ authors = ["Marcus Risanger <69350948+MarcusRisanger@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-advent-of-code-data = "^1.3.0"
-numba = "^0.56.4"
+advent-of-code-data = "^2.0.1"
 jupyter = "^1.0.0"
 numpy = "^1.23.5"
 matplotlib = "^3.6.2"
