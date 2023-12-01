@@ -10,6 +10,13 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 
 # Solved Tasks
 
+## 2023 AOC
+
+| Day   | Stars         | Comment
+|-------|---------------|---------
+| 1     | :star:        | Straightforward solution.
+
+
 ## 2022 AOC
 
 | Day   | Stars         | Comment 
