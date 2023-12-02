@@ -15,6 +15,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | Day   | Stars         | Comment
 |-------|---------------|---------
 | 1     | :star::star:  | Straightforward solution for part 1. For part 2, need to be careful with replacing since the correct decoding of e.g "nineight" is 98.
+| 2     | :star::star:  | The pattern for each row was nice to evaluate using regex.
 
 
 ## 2022 AOC
