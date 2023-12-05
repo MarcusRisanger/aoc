@@ -13,7 +13,7 @@ def clean_data(input: str) -> tuple[list[int], list[list[tuple[range, int]]]]:
 
     traverse = []
     reverse = []
-    for i in maps[1:]:
+    for i in maps:
         t_sub_rule: list[tuple[range, int]] = []
         r_sub_rule: list[tuple[range, int]] = []
         for t, s, diff in re.findall(r"(\d+) (\d+) (\d+)", i):
