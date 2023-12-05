@@ -21,6 +21,8 @@ test_input = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,
 22 11 13  6  5
  2  0 12  3  7"""
 
+actual_data = clean_input(Puzzle(2021, 4).input_data)
+
 
 def test_clean_input():
     draws, boards = clean_input(test_input)
@@ -34,11 +36,11 @@ def test_clean_input():
 
 def test_part1():
     draws, boards = clean_input(test_input)
-
     assert part1(draws=draws, boards=boards) == 4512
+    assert part1(*actual_data) == 29440
 
 
 def test_part2():
     draws, boards = clean_input(test_input)
-
     assert part2(draws=draws, boards=boards) == 1924
+    assert part2(*actual_data) == 13884

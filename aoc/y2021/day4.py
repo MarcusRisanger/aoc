@@ -1,5 +1,5 @@
 """
-AOC 2021 Day 4: 
+AOC 2021 Day 4:
   - Part 1 & 2: Solving bingo boards based on a set draw ordering.
 """
 
