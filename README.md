@@ -20,9 +20,10 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 4     | :star::star:  | Mostly about looping control. Initially did a regex solution but this was overkill.
 | 5     | :star::star:  | Learning the `reduce` function. Nice!
 | 6     | :star::star:  | Simple and straightforward!
+| 7     | :star::star:  | Used a nice `maketrans` trick here to allow lexicographic sorting. Made a function to calculate the hand type - lack of brains.
 
 
-## 2022 AOC
+## 2022 AOC (Incomplete)
 
 | Day   | Stars         | Comment 
 |-------|---------------|---------
