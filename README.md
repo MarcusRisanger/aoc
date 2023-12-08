@@ -18,9 +18,12 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 2     | :star::star:  | The pattern for each row was nice to evaluate using regex.
 | 3     | :star::star:  | Interesting take here is to isolate the symbols in a dict, and use regex `finditer` to create adjacency masks for each number. The `&` operator isolates any adjacent symbol coordinates, and the group value is assigned to the symbol.
 | 4     | :star::star:  | Mostly about looping control. Initially did a regex solution but this was overkill.
+| 5     | :star::star:  | Learning the `reduce` function. Nice!
+| 6     | :star::star:  | Simple and straightforward!
+| 7     | :star::star:  | Used a nice `maketrans` trick here to allow lexicographic sorting. Made a function to calculate the hand type - lack of brains.
 
 
-## 2022 AOC
+## 2022 AOC (Incomplete)
 
 | Day   | Stars         | Comment 
 |-------|---------------|---------
