@@ -21,6 +21,7 @@ For each task there is a corresponding test that unit tests the data cleaning fu
 | 5     | :star::star:  | Learning the `reduce` function. Nice!
 | 6     | :star::star:  | Simple and straightforward!
 | 7     | :star::star:  | Used a nice `maketrans` trick here to allow lexicographic sorting. Made a function to calculate the hand type - lack of brains.
+| 8     | :star::star:  | Some graph traversals with a twist. Was stuck on part 2 but figured I should check for regularity in solution steps per node. After I confirmed regularity for all nodes in part 2 I initially implemented LCM manually at first - but the `math` module had my back all this time.. Full disclosure: least common multiple was new for me!
 
 
 ## 2022 AOC (Incomplete)
