@@ -1,0 +1,12 @@
+{
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "terminal.integrated.fontSize": 14,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+}

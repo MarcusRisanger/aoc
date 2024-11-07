@@ -1,0 +1,54 @@
+from aoc.y2021.day8 import clean_input, part1, part2
+from aocd.models import Puzzle
+
+minimal_test_input = """acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"""
+
+test_input = """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
+fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
+fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
+aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea
+fgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb
+dbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbcadfe
+bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
+egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
+gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce"""
+
+minimal_data = clean_input(minimal_test_input)
+data = clean_input(test_input)
+actual_data = clean_input(Puzzle(2021, 8).input_data)
+
+
+def test_clean_input():
+    assert minimal_data == [
+        [
+            "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab",
+            "cdfeb fcadb cdfeb cdbaf",
+        ]
+    ]
+    assert data[:3] == [
+        [
+            "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb",
+            "fdgacbe cefdb cefbgd gcbe",
+        ],
+        [
+            "edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec",
+            "fcgedb cgb dgebacf gc",
+        ],
+        [
+            "fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef",
+            "cg cg fdcagb cbg",
+        ],
+    ]
+
+
+def test_part1():
+    assert part1(minimal_data) == 0
+    assert part1(data) == 26
+    assert part1(actual_data) == 416
+
+
+def test_part2():
+    assert part2(minimal_data) == 5353
+    assert part2(data) == 61229
+    assert part2(actual_data) == 1043697
