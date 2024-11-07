@@ -65,14 +65,14 @@ def valid_solutions(record: str, groups: tuple[int, ...]) -> int:
     return 0  # static type checker complains..
 
 
-def part1(inp: str) -> int:
+def part1(inp: str) -> str:
     rows = transform_input(inp)
-    return sum(valid_solutions(record, groups) for record, groups in rows)
+    return str(sum(valid_solutions(record, groups) for record, groups in rows))
 
 
-def part2(inp: str) -> int:
+def part2(inp: str) -> str:
     rows = transform_input(inp, p2=True)
-    return sum(valid_solutions(record, groups) for record, groups in rows)
+    return str(sum(valid_solutions(record, groups) for record, groups in rows))
 
 
 if __name__ == "__main__":

@@ -75,16 +75,16 @@ def parse_input(arg: str) -> list[str]:
     return arg.split("\n\n")
 
 
-def part1(arg: str) -> int:
+def part1(arg: str) -> str:
     """Get score of patterns, expecting zero flaws."""
     func = partial(parse_pattern, target=0)
-    return sum(map(func, parse_input(arg)))
+    return str(sum(map(func, parse_input(arg))))
 
 
-def part2(arg: str) -> int:
+def part2(arg: str) -> str:
     """Get score of patterns, expecting one flaw per pattern."""
     func = partial(parse_pattern, target=1)
-    return sum(map(func, parse_input(arg)))
+    return str(sum(map(func, parse_input(arg))))
 
 
 if __name__ == "__main__":

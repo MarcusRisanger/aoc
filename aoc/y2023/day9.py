@@ -5,7 +5,8 @@ from functools import reduce
 
 def eval(row: str, p=1):
     r = np.array(row.split()).astype(int)
-    first, last = [], []
+    first: list = list()
+    last: list = list()
     while True:
         first.insert(0, r[0])
         last.append(r[-1])
@@ -16,13 +17,13 @@ def eval(row: str, p=1):
         r = r[1:] - r[:-1]
 
 
-def part1(input: str):
-    return int(sum(map(eval, input.split("\n"))))
+def part1(input: str) -> str:
+    return str(int(sum(map(eval, input.split("\n")))))
 
 
-def part2(input: str):
+def part2(input: str) -> str:
     inp = input.split("\n")
-    return int(sum(map(eval, inp, repeat(2))))
+    return str(int(sum(map(eval, inp, repeat(2)))))
 
 
 if __name__ == "__main__":

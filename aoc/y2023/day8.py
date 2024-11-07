@@ -10,10 +10,10 @@ def clean_input(input: str) -> tuple[int, dict[str, dict[str, str]]]:
     return key, graph
 
 
-def part1(key: str, graph: dict[str, dict[str, str]], start="AAA", stop="ZZZ") -> int:
+def part1(key: str, graph: dict[str, dict[str, str]], start="AAA", stop="ZZZ") -> str:  # type: ignore[return]
     for step, i in enumerate(itertools.cycle(key)):
         if start.endswith(stop):
-            return step
+            return str(step)
         start = graph[start][i]
 
 

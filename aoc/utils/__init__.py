@@ -1,9 +1,10 @@
 from colorama.ansi import AnsiBack
 from colorama import Back
 import os
+from collections.abc import Sequence
 
 
-def grid_print(grid: list[str | list[str]], clear: bool = True) -> None:
+def grid_print(grid: Sequence[str | list[str]], clear: bool = True) -> None:
     if clear:
         os.system("cls")
     for row in grid:
@@ -13,7 +14,7 @@ def grid_print(grid: list[str | list[str]], clear: bool = True) -> None:
 
 
 def colorize(
-    grid: list[list[str]], highlight: set[tuple[int, int]], color: AnsiBack = Back.GREEN
+    grid: list[list[str]], highlight: set[tuple[int, int]], color: str = Back.GREEN
 ) -> list[list[str]]:
     """
     Colorize a grid with highlighted row/col coordinates.
