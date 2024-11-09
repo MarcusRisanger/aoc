@@ -29,7 +29,7 @@ def parse_hashmap(instructions: list[tuple[str, ...]]) -> dict[int, dict[str, in
     for label, instruction, focal_length in instructions:
         val = hash(label)
         if instruction == "-":
-            hashmap[val].pop(label, None)  # Default arg suppresses KeyError
+            hashmap[val].pop(label, None)  # Default arg suppresses KeyError, nifty
         else:
             hashmap[val][label] = int(focal_length)
     return hashmap

@@ -19,6 +19,8 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 11    | Much easier than day 10! The shortest path is just the sum of absolute difference in number of rows and columns between each point. By first evaluating which rows and columns are subject to spatial expansion, you can loop over the `range(min, max)` for rows/columns and sum 1 per "non-expanded" row/column and sum whatever expansion factor for the spatially challenged rows/columns - in part 1 that is 2, in part 2 that is 1 million.
 | 12    | Brute forced part 1 but that was not possible for part 2. I looked at the subreddit for inspiration and struggled understanding this problem (I am not a developer after all!) until I found a [great writeup](https://advent-of-code.xavd.id/writeups/2023/day/12/) by [David Brownman](https://github.com/xavdid). This broke down the problem into understandable chunks - a lot of the solutions in the AOC megathreads are written "shorthand" and with some flair - so deciphering what happens is often difficult, so it's great to have found this resource for future reference!
 | 13    | This problem was not that difficult. The most troublesome part was to get the generator that yielded mirror slices right. I rewrote a bit for part 2 to solve generally with X expected flaws - on the assumption that all tiles would have mirror locations changed, and that none of the part 1 values were correct.
+| 14    | Part 1 was easy with some regex magic!
+| 15    | Fairly straightforward with `defaultdict` and some light regexing.
 
 
 ## 2022 AOC 
