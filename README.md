@@ -70,3 +70,5 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 4     | Regex again to identify valid passports.
 | 5     | First task where the input could be translated to a binary representation of an integer. Used set operations to get the missing seat ID between min and max.
 | 6     | Interesting exercise to count member occurrences within groups. I wrote something ugly that worked, and then refined to use set operations for this instead, based on the solutions in `norvig`'s `pytudes` solution collection.
+| 7     | Recursion time! Here it wasn't that challenging to find a solution, but to find a *nice* solution took some time.
+| 8     | Following instructions! Not difficult. Brute forced part 2 by looping over the program and switching `jmp`/`nop` commands.
