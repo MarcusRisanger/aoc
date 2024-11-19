@@ -1,6 +1,3 @@
-from typing import Literal
-
-
 Instruction = tuple[str, int]
 Line = int
 Program = dict[Line, Instruction]
