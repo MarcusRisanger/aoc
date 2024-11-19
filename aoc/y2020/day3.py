@@ -1,10 +1,11 @@
 """
 AOC 2020, Day 3
 """
+
 import math
 
 
-def clean_input(input: str) -> list[int]:
+def clean_input(input: str) -> list[str]:
     return input.splitlines()
 
 
@@ -14,16 +15,20 @@ def traverse(input: list[str], slope: int = 3, speed: int = 1) -> int:
     for i in range(0, len(input), speed):
         if input[i][index] == "#":
             trees += 1
+
+        # When reaching right side of slope, start over from left side
         index = (index + slope) % len(input[0])
     return trees
 
 
-def part1(input: list[str]) -> int:
-    return traverse(input)
+def part1(input: list[str]) -> str:
+    return str(traverse(input))
 
 
-def part2(input: str) -> int:
-    return math.prod([*map(traverse, [input] * 5, [1, 3, 5, 7, 1], [1, 1, 1, 1, 2])])
+def part2(input: list[str]) -> str:
+    return str(
+        math.prod([*map(traverse, [input] * 5, [1, 3, 5, 7, 1], [1, 1, 1, 1, 2])])
+    )
 
 
 if __name__ == "__main__":

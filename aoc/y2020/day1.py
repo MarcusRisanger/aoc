@@ -7,12 +7,20 @@ def clean_input(input: str) -> list[int]:
     return [*map(int, input.splitlines())]
 
 
-def part1(input: list[int]) -> int:
-    return list(((x * y) for x in input for y in input if x + y == 2020))[0]
+def part1(input: list[int]) -> str:
+    return str(next((x * y) for x in input for y in input if x + y == 2020))
 
 
-def part2(input: str) -> int:
-    return list(((x * y * z) for x in input for y in input for z in input if x + y + z == 2020))[0]
+def part2(input: list[int]) -> str:
+    return str(
+        next(
+            (x * y * z)
+            for x in input
+            for y in input
+            for z in input
+            if x + y + z == 2020
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -25,7 +25,8 @@ def parse_hashmap(instructions: list[tuple[str, ...]]) -> dict[int, dict[str, in
     The prompt states the lense order is important, and Python dicts are ordered
     by insertion by default. Phew!
     """
-    hashmap = defaultdict(dict)  # Defaultdict allows creation of keys on assignment
+    # Defaultdict allows creation of keys on assignment
+    hashmap: dict[int, dict] = defaultdict(dict)
     for label, instruction, focal_length in instructions:
         val = hash(label)
         if instruction == "-":

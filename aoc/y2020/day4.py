@@ -1,19 +1,22 @@
 """
 AOC 2020, Day 1
 """
+
 import re
 
 
-def clean_input(input: str) -> list[int]:
+def clean_input(input: str) -> list[str]:
     return input.split("\n\n")
 
 
-def part1(input: list[str]) -> int:
+def part1(input: list[str]) -> str:
+    """Counts all lines where all elements in `need` are found."""
     need = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
-    return sum(1 if all([i in line for i in need]) else 0 for line in input)
+    return str(sum(1 if all([i in line for i in need]) else 0 for line in input))
 
 
-def part2(input: list[str]) -> int:
+def part2(input: list[str]) -> str:
+    """Counts all lines where all the different required patterns are found and valid."""
     patterns = [
         r"byr:(19[2-9]\d|200[0-2])",
         r"iyr:(20(?:[1]\d|20))",
@@ -23,7 +26,9 @@ def part2(input: list[str]) -> int:
         r"ecl:(amb|blu|brn|gry|grn|hzl|oth)",
         r"pid:[0-9]{9}(?!\d)",
     ]
-    return sum(1 if all([re.findall(p, line) for p in patterns]) else 0 for line in input)
+    return str(
+        sum(1 if all([re.findall(p, line) for p in patterns]) else 0 for line in input)
+    )
 
 
 if __name__ == "__main__":
