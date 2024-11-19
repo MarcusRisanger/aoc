@@ -59,3 +59,13 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 12    | Had to refactor my initial solution after seeing `/u/4HbQ`s solution on Reddit. I find recursion hard and this was a great example for me to understand.
 | 13    | Numpy is still difficult, but refactoring my old solutions from last year is helping.
 | 14    | Interesting exercise with dictionary abuse. First time I did this last year I created new strings like in the cheeky example but hit a brick wall for part 2.. obviously..
+
+## 2020 AOC
+
+| Day   | Comment 
+|-------|---------
+| 1     | Solved using generator expressions and `next` to get the first element.
+| 2     | Regex to get rules, looped over the input once to get parts 1 and 2 in one go.
+| 3     | Hardest part here was to "extend" the map rightwards as the input was exhausted.
+| 4     | Regex again to identify valid passports.
+| 5     | First task where the input could be translated to a binary representation of an integer. Used set operations to get the missing seat ID between min and max.

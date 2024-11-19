@@ -11,7 +11,7 @@ def parts(input: str) -> tuple[str, str]:
         low, high, letter, code = re.findall(r"(\d+).(\d+).(\w+):.(\w+)", row)[0]
         if code.count(letter) >= int(low) and code.count(letter) <= int(high):
             valid_1 += 1
-        if (code[int(low) - 1] == letter) ^ (code[int(high) - 1] == letter):
+        if (code[int(low) - 1] == letter) ^ (code[int(high) - 1] == letter):  # ^ is XOR
             valid_2 += 1
 
     return str(valid_1), str(valid_2)
