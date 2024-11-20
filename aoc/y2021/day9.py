@@ -16,7 +16,7 @@ class Coord:
     y: int
     val: int
 
-    def __hash__(self) -> str:
+    def __hash__(self) -> int:
         return hash(repr(self))
 
 
@@ -35,7 +35,7 @@ def clean_input(input_data: str) -> Grid:
 
 def get_neighbors(c: Coord, g: Grid) -> Generator[Coord]:
     """Neighbors in this case are only up/down/left/right"""
-    gen = ((x, y) for x, y in get_n(c.x, c.y) if (0 <= x < g.R) and (0 <= y < g.C))
+    gen = ((x, y) for x, y in get_n((c.x, c.y)) if (0 <= x < g.R) and (0 <= y < g.C))
     for x, y in gen:
         yield Coord(x, y, g.g[x][y])
 

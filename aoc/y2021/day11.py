@@ -18,11 +18,11 @@ def clean_input(input_data: str) -> Octopi:
     }
 
 
-def get_octopi(x: int, y: int, octopi: Octopi) -> list[tuple[int, int]]:
+def get_octopi(octo: tuple[int, int], octopi: Octopi) -> list[tuple[int, int]]:
     """Returns the neighboring octopi (incl. diagonal).
     Note that filter(octopi.get, []) does not return octopi
     where their value is 0 (filtered as falsy)."""
-    return [*filter(octopi.get, n(x, y, shape="box"))]
+    return [*filter(octopi.get, n(octo, shape="box"))]
 
 
 def octopi_flashes(octopi: Octopi) -> tuple[str, str]:  # type: ignore[return]
@@ -40,7 +40,7 @@ def octopi_flashes(octopi: Octopi) -> tuple[str, str]:  # type: ignore[return]
             octopi[i] = 0
             flashes += 1
             # Incrementing neighbors that are != 0
-            for neighbor in get_octopi(*i, octopi):
+            for neighbor in get_octopi(i, octopi):
                 octopi[neighbor] += 1
                 # If neighbor is pushed to flash, add to set
                 if octopi[neighbor] > 9:

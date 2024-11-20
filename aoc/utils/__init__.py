@@ -37,7 +37,10 @@ def colorize(
     return grid
 
 
-def neighbors(x: int, y: int, **kw) -> list[tuple[int, int]]:
+Point = tuple[int, int]
+
+
+def neighbors(point: Point, **kw) -> list[tuple[int, int]]:
     """Returns grid neighbors.
 
     Default: Left/right/up/down
@@ -47,6 +50,7 @@ def neighbors(x: int, y: int, **kw) -> list[tuple[int, int]]:
           - "diagonal" for all diagonal neighbors
           - "box-self" for all neighbors including self
     """
+    x, y = point
     up_down = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
     diag = [(x + 1, y + 1), (x + 1, y - 1), (x - 1, y - 1), (x - 1, y + 1)]
 
