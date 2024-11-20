@@ -1,15 +1,13 @@
 from functools import cache
 
 Joltage = int
-Adapters = tuple[Joltage]
+Adapters = tuple[Joltage, ...]
 
 
 def clean_input(inp: str) -> Adapters:
     """Parse adapter values and add outlet joltage (0) and device joltage (max+3) to sequence."""
-    adapters = sorted(list(map(int, inp.split())))
-    adapters.insert(0, 0)
-    adapters.append(max(adapters) + 3)
-    return tuple(adapters)
+    adapters = tuple(sorted(list(map(int, inp.split()))))
+    return (0,) + adapters + (max(adapters) + 3,)
 
 
 def part1(adapters: Adapters) -> str:
