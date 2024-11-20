@@ -4,9 +4,11 @@ AOC 2021, Day 11:
   - Parts 1 and 2 implements the same code with different exits
 """
 
-from aoc.utils import neighbors as n
+from aoc.utils import neighbors as n, extract_neighbors
 
-Octopi = dict[tuple[int, int], int]
+Octopus = tuple[int, int]
+Level = int
+Octopi = dict[Octopus, Level]
 
 
 def clean_input(input_data: str) -> Octopi:
@@ -18,11 +20,9 @@ def clean_input(input_data: str) -> Octopi:
     }
 
 
-def get_octopi(octo: tuple[int, int], octopi: Octopi) -> list[tuple[int, int]]:
-    """Returns the neighboring octopi (incl. diagonal).
-    Note that filter(octopi.get, []) does not return octopi
-    where their value is 0 (filtered as falsy)."""
-    return [*filter(octopi.get, n(octo, shape="box"))]
+def get_octopi(octo: Octopus, octopi: Octopi) -> list[Octopus]:
+    """Returns the neighboring octopi (incl. diagonal)."""
+    return extract_neighbors(octo, octopi, shape="box")
 
 
 def octopi_flashes(octopi: Octopi) -> tuple[str, str]:  # type: ignore[return]

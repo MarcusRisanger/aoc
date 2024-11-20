@@ -1,6 +1,7 @@
+from typing import Any, Literal
 from colorama import Back
 import os
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 
 
 def grid_print(grid: Sequence[str | list[str]], clear: bool = True) -> None:
@@ -63,3 +64,12 @@ def neighbors(point: Point, **kw) -> list[tuple[int, int]]:
             return up_down + diag + [(x, y)]
 
     return up_down
+
+
+def extract_neighbors(
+    point: Point,
+    grid: Mapping[Point, Any],
+    shape: Literal["box", "diagonal", "box-self"],
+) -> list[Point]:
+    """Only get neighbors that can be found in grid."""
+    return [*filter(grid.get, neighbors(point, shape=shape))]
