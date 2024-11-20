@@ -48,7 +48,6 @@ def solve(grid: Grid):
 
 if __name__ == "__main__":
     from aocd.models import Puzzle
-    from time import time
 
     # Get puzzle details and set up input
     puzzle = Puzzle(year=2022, day=8)

@@ -1,35 +1,36 @@
-def process_row(l: list | int, r: list | int):
-
+def process_row(left: list | int, right: list | int):
     # If both inputs are ints, go for comparison
-    if isinstance(l, int) and isinstance(r, int):
-        if l < r:
+    if isinstance(left, int) and isinstance(right, int):
+        if left < right:
             return 1
-        if l > r:
+        if left > right:
             return -1
     # If one input is list, recursively call process
-    if isinstance(l, list) and isinstance(r, int):
-        return process_row(l, [r])
-    if isinstance(l, int) and isinstance(r, list):
-        return process_row([l], r)
+    if isinstance(left, list) and isinstance(right, int):
+        return process_row(left, [right])
+    if isinstance(left, int) and isinstance(right, list):
+        return process_row([left], right)
 
     # If both inputs are lists, process each element recursively
-    if isinstance(l, list) and isinstance(r, list):
-        for x in map(process_row, l, r):
+    if isinstance(left, list) and isinstance(right, list):
+        for x in map(process_row, left, right):
             if x:
                 return x
         # If no result is found, the iterators are exhausted, check length
-        return process_row(len(l), len(r))
+        return process_row(len(left), len(right))
 
 
-def part1(input_data: str):
-    return sum(
-        i
-        for i, row in enumerate(input_data, 1)
-        if process_row(*map(eval, row.split())) == 1
+def part1(input_data: list[str]) -> str:
+    return str(
+        sum(
+            i
+            for i, row in enumerate(input_data, 1)
+            if process_row(*map(eval, row.split())) == 1
+        )
     )
 
 
-def part2(input_data: str):
+def part2(input_data: list[str]) -> str:
     signals = [item for sublist in input_data for item in sublist.split()]
     sort_sigs = ["[[2]]", "[[6]]"]  # Adding key signals
     for sig in signals:
@@ -42,7 +43,7 @@ def part2(input_data: str):
                 break
         # If no higher order was found, append
         sort_sigs.append(sig)
-    return (sort_sigs.index("[[2]]") + 1) * (sort_sigs.index("[[6]]") + 1)
+    return str((sort_sigs.index("[[2]]") + 1) * (sort_sigs.index("[[6]]") + 1))
 
 
 if __name__ == "__main__":

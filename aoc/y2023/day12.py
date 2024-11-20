@@ -1,8 +1,6 @@
 # Dynamic programming approach
 # Great writeup here: https://advent-of-code.xavd.id/writeups/2023/day/12/
-from typing import Generator
-import re
-from itertools import product
+
 from functools import cache
 
 

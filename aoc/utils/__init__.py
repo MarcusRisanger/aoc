@@ -1,4 +1,3 @@
-from colorama.ansi import AnsiBack
 from colorama import Back
 import os
 from collections.abc import Sequence

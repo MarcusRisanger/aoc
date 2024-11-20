@@ -1,4 +1,4 @@
-from aoc.y2021.day2 import clean_input, part1, part2
+from aoc.y2021.day2 import part1, part2
 from aocd.models import Puzzle
 
 test_input = """forward 5

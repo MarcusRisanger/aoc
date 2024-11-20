@@ -24,20 +24,20 @@ actual_data = Puzzle(2022, 9).input_data
 
 
 def test_touching():
-    assert touching(0, 0, 0, 0) == True
-    assert touching(0, 1, 0, 0) == True
-    assert touching(-1, -1, 0, 0) == True
-    assert touching(0, 1, 0, 1) == True
-    assert touching(1, 1, 0, 0) == True
-    assert touching(0, 0, 1, 1) == True
-    assert touching(0, 1, 1, 0) == True
-    assert touching(1, -1, 0, 0) == True
-    assert touching(2, -1, 0, 0) == False
-    assert touching(-2, 1, 0, 0) == False
-    assert touching(0, 0, -2, 1) == False
-    assert touching(0, 0, 2, -1) == False
-    assert touching(2, 0, 0, 1) == False
-    assert touching(-2, 0, 0, 1) == False
+    assert touching(0, 0, 0, 0) is True
+    assert touching(0, 1, 0, 0) is True
+    assert touching(-1, -1, 0, 0) is True
+    assert touching(0, 1, 0, 1) is True
+    assert touching(1, 1, 0, 0) is True
+    assert touching(0, 0, 1, 1) is True
+    assert touching(0, 1, 1, 0) is True
+    assert touching(1, -1, 0, 0) is True
+    assert touching(2, -1, 0, 0) is False
+    assert touching(-2, 1, 0, 0) is False
+    assert touching(0, 0, -2, 1) is False
+    assert touching(0, 0, 2, -1) is False
+    assert touching(2, 0, 0, 1) is False
+    assert touching(-2, 0, 0, 1) is False
 
 
 def test_move_head():

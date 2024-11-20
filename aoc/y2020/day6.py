@@ -1,4 +1,3 @@
-from string import ascii_lowercase as chars
 
 
 def clean_input(inp: str) -> list[list[str]]:

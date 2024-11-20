@@ -3,9 +3,12 @@ import math
 import re
 
 
-def clean_input(input: str) -> tuple[int, dict[str, dict[str, str]]]:
+def clean_input(input: str) -> tuple[str, dict[str, dict[str, str]]]:
     key, _, *nodes = input.split("\n")
-    graph = {n: {"L": l, "R": r} for n, l, r in [re.findall(r"\w+", n) for n in nodes]}
+    graph: dict[str, dict[str, str]] = {
+        n: {"L": left, "R": right}
+        for n, left, right in [re.findall(r"\w+", n) for n in nodes]
+    }
 
     return key, graph
 
@@ -17,9 +20,9 @@ def part1(key: str, graph: dict[str, dict[str, str]], start="AAA", stop="ZZZ") -
         start = graph[start][i]
 
 
-def part2(key: str, graph: dict[str, dict[str, str]]) -> int:
+def part2(key: str, graph: dict[str, dict[str, str]]) -> str:
     starts = list(filter(lambda x: x.endswith("A"), graph.keys()))
-    return math.lcm(*[part1(key, graph, start, "Z") for start in starts])
+    return str(math.lcm(*[part1(key, graph, start, "Z") for start in starts]))
 
 
 if __name__ == "__main__":

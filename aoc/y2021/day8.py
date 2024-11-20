@@ -3,7 +3,6 @@ AOC 2021, Day 8:
   - Part 1: Simple pattern matching
   - Part 2: More advanced pattern matching
 """
-from collections import Counter
 
 
 def clean_input(input_data: str) -> list[list[str]]:

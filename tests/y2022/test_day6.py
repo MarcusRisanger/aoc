@@ -1,6 +1,5 @@
 from aoc.y2022.day6 import part1, part2
 from aocd.models import Puzzle
-import pytest
 
 test_input = "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
 
