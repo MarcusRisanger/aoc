@@ -77,3 +77,4 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 11    | Traversal for part 2 was tricky. Purposefully did not remove flooring from the layout grid to have an easy "out" to check whether a position after applying vector was outside the grid.
 | 12    | A nice application for `match case` - the most tricky part for me was the `turn`... Been too long since trigonometry class? 
 | 13    | Tricky looping here for part 2. Gradually increasing step sizes to find convergence across all buses.
+| 14    | Mucking around a bit with padding for generating 36 bit integers. Borrowed the very neat `str.format()` trick from `norvig`.
