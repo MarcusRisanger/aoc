@@ -75,3 +75,4 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 9     | Leveraging itertools for part 1 and a "crawl" over the sequence (1 pass) for part 2.
 | 10    | Part 1 was solved with a quick `zip` and part 2 was solved recursively by summing up ways to reach a given adapter.
 | 11    | Traversal for part 2 was tricky. Purposefully did not remove flooring from the layout grid to have an easy "out" to check whether a position after applying vector was outside the grid.
+| 12    | A nice application for `match case` - the most tricky part for me was the `turn`... Been too long since trigonometry class? 
