@@ -61,11 +61,13 @@ def get_wires_crosses(wires: list[WireInstruction]) -> tuple[list[Wire], list[Po
 
 
 def part1(wires: list[WireInstruction]) -> str:
+    """Get manhattan distance to closest wire crossing relative to origin (0,0)"""
     _, crosses = get_wires_crosses(wires)
     return str(min(sum(map(abs, coord)) for coord in crosses))
 
 
 def part2(wires: list[WireInstruction]) -> str:
+    """Get lowest number of steps from origin for two wires to cross."""
     all_wires, crosses = get_wires_crosses(wires)
     return str(min(get_min_path_length(p, all_wires) for p in crosses))
 
