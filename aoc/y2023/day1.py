@@ -1,7 +1,9 @@
 """
 AOC 2023, Day 1
 """
+
 from typing import Iterable
+import re
 
 
 def clean_input(data: str) -> list[str]:

@@ -23,9 +23,7 @@ test_data = """[1,1,3,1,1]
 [[]]
 
 [1,[2,[3,[4,[5,6,7]]]],8,9]
-[1,[2,[3,[4,[5,6,0]]]],8,9]""".split(
-    "\n\n"
-)
+[1,[2,[3,[4,[5,6,0]]]],8,9]""".split("\n\n")
 
 actual_data = Puzzle(2022, 13).input_data.split("\n\n")
 
@@ -38,10 +36,10 @@ def test_process_row():
 
 
 def test_part1():
-    assert part1(test_data) == 13
-    assert part1(actual_data) == 5003
+    assert part1(test_data) == "13"
+    assert part1(actual_data) == "5003"
 
 
 def test_part2():
-    assert part2(test_data) == 140
-    assert part2(actual_data) == 20280
+    assert part2(test_data) == "140"
+    assert part2(actual_data) == "20280"

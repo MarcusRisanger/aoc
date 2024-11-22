@@ -22,10 +22,10 @@ def test_clean_input():
 
 
 def test_part1():
-    assert part1(data) == 7
-    assert part1(actual_data) == 244
+    assert part1(data) == "7"
+    assert part1(actual_data) == "244"
 
 
 def test_part2():
-    assert part2(data) == 336
-    assert part2(actual_data) == 9406609920
+    assert part2(data) == "336"
+    assert part2(actual_data) == "9406609920"

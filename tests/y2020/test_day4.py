@@ -28,10 +28,10 @@ def test_clean_input():
 
 
 def test_part1():
-    assert part1(test_data) == 2
-    assert part1(actual_data) == 247
+    assert part1(test_data) == "2"
+    assert part1(actual_data) == "247"
 
 
 def test_part2():
-    assert part2(test_data) == 2
-    assert part2(actual_data) == 145
+    assert part2(test_data) == "2"
+    assert part2(actual_data) == "145"

@@ -25,5 +25,5 @@ def test_clean_input():
 
 
 def test_octopi():
-    assert octopi_flashes(data) == (1656, 195)
-    assert octopi_flashes(actual_input) == (1627, 329)
+    assert octopi_flashes(data) == ("1656", "195")
+    assert octopi_flashes(actual_input) == ("1627", "329")

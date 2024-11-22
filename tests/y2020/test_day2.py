@@ -9,5 +9,5 @@ actual_data = Puzzle(2020, 2).input_data
 
 
 def test_parts():
-    assert parts(test_input) == (2, 1)
-    assert parts(actual_data) == (456, 308)
+    assert parts(test_input) == ("2", "1")
+    assert parts(actual_data) == ("456", "308")

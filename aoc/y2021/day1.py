@@ -1,29 +1,27 @@
 """
-AOC 2021 Day 1: 
+AOC 2021 Day 1:
   - Part 1: Evaluating contiguous list elements
   - Part 2: Evaluating a moving selection of contiguous list elements
 """
 
+from typing import Sequence
 
-def clean_input(input_data: str) -> list[list[int]]:
+
+def clean_input(input_data: str) -> list[int]:
     return list(map(int, input_data.splitlines()))
 
 
-def part1(data: list[list[int]]) -> int:
+def part1(data: Sequence[int]) -> str:
     """How many times does the depth measurement
     increase vs. the previous depth measurement?"""
-    return sum(1 for i in range(1, len(data)) if data[i] > data[i - 1])
+    return str(sum(1 for i in range(1, len(data)) if data[i] > data[i - 1]))
 
 
-def part2(data: list[list[int]]) -> int:
+def part2(data: Sequence[int]) -> str:
     """How many times does the three-measurement sliding window
     depth measure increase vs. the previous three-measurement
     sliding window depth measure?"""
-    return sum(
-        1
-        for i in range(1, len(data))
-        if sum(data[i : i + 3]) > sum(data[i - 1 : i + 2])
-    )
+    return str(sum(1 for i in range(1, len(data)) if sum(data[i : i + 3]) > sum(data[i - 1 : i + 2])))
 
 
 if __name__ == "__main__":
