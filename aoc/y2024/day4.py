@@ -1,39 +1,37 @@
-from aocd.models import Puzzle
-
-puzzle = Puzzle(2024, 4)
-
-
-def clean_input(inp: str) -> dict:
-    return {(x, y): val for y, row in enumerate(inp.splitlines()) for x, val in enumerate(row)}
-
-
-straight = ((0, 0), (1, 0), (2, 0), (3, 0))
-diag1 = ((0, 0), (1, 1), (2, 2), (3, 3))
-diag2 = ((0, 0), (-1, 1), (-2, 2), (-3, 3))
-down = ((0, 0), (0, 1), (0, 2), (0, 3))
-
-
-def get_sub(at: tuple, dir: tuple[tuple, ...], grid: dict, search: str):
-    return "".join([grid.get((at[0] + x, at[1] + y), "") for x, y in dir]) in (search, search[::-1])
+def part1(inp: str) -> int:
+    row = inp.index("\n")  # Row width for slicing
+    return sum(
+        w in ("XMAS", "SAMX")
+        for i in range(len(inp))
+        for w in (
+            inp[i : i + 4],  # Straight
+            inp[i::row][:4],  # Diagonal (/)
+            inp[i :: row + 1][:4],  # Down
+            inp[i :: row + 2][:4],  # Diagonal (\)
+        )
+    )
 
 
-grid = clean_input(puzzle.input_data)
+def part2(inp: str) -> int:
+    row = inp.index("\n")
+    return sum(
+        all(
+            w in ("MAS", "SAM")
+            for w in (
+                inp[i - row : i + row + 1 : row],  # Diagonal (/)
+                inp[i - (row + 2) : i + (row + 2) + 1 : row + 2],  # Diagonal (\)
+            )
+        )
+        for i in range(len(inp))
+    )
 
-total = 0
-for i in grid:
-    total += sum(get_sub(i, dir, grid, "XMAS") for dir in (straight, diag1, diag2, down))
 
-print(f"Part 1: {total}")
-puzzle.answer_a = total
+if __name__ == "__main__":
+    from aocd.models import Puzzle
 
-p2_total = 0
-for i in grid:
-    if grid[i] != "A":
-        continue  # No possible X-MASsing
-    d1 = get_sub(i, ((-1, -1), (0, 0), (1, 1)), grid, "MAS")
-    d2 = get_sub(i, ((-1, 1), (0, 0), (1, -1)), grid, "MAS")
-    if d1 and d2:
-        p2_total += 1
+    # Get puzzle details and set up input
+    puzzle = Puzzle(year=2024, day=4)
 
-print(f"Part 2: {p2_total}")
-puzzle.answer_b = p2_total
+    # Submit answers
+    puzzle.answer_a = str(part1(puzzle.input_data))
+    puzzle.answer_b = str(part2(puzzle.input_data))
