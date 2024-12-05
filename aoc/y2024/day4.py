@@ -4,9 +4,9 @@ def part1(inp: str) -> int:
         w in ("XMAS", "SAMX")
         for i in range(len(inp))
         for w in (
-            inp[i : i + 4],  # Straight
+            inp[i : i + 4],  # Straight (—)
             inp[i::row][:4],  # Diagonal (/)
-            inp[i :: row + 1][:4],  # Down
+            inp[i :: row + 1][:4],  # Down (|)
             inp[i :: row + 2][:4],  # Diagonal (\)
         )
     )
