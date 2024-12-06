@@ -14,14 +14,14 @@ def clean_input(inp: str) -> tuple[list[Manual], Rules]:
     """
     rules, manuals = inp.split("\n\n")
 
-    manuals = [m.split(",") for m in manuals.splitlines()]
+    m = [m.split(",") for m in manuals.splitlines()]
 
     r = defaultdict(set)
     for rule in rules.splitlines():
         before, after = rule.split("|")
         r[before].add(after)
 
-    return manuals, r
+    return m, r
 
 
 def is_valid(manual: Manual, rules: Rules) -> bool:
@@ -45,7 +45,7 @@ def part1(manuals: list[Manual], rules: Rules) -> int:
 def page_sort(manual: Manual, rules: Rules) -> Manual:
     """Get a correctly sorted Manual."""
 
-    def get_next(manual: Manual) -> Page:
+    def get_next(manual: Manual) -> Page:  # type: ignore[return]
         """Get next page, remove page from passed Manual."""
         for i, page in enumerate(manual):
             other = [m for m in manual if m != page]

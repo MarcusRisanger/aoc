@@ -1,4 +1,5 @@
 def part1(inp: str) -> int:
+    """Count occurrences of "XMAS" where all directions are valid."""
     row = inp.index("\n")  # Row width for slicing
     return sum(
         w in ("XMAS", "SAMX")
@@ -13,6 +14,7 @@ def part1(inp: str) -> int:
 
 
 def part2(inp: str) -> int:
+    """Count occurrences where both diagonals across A make "MAS" or "SAM"."""
     row = inp.index("\n")
     return sum(
         all(
