@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import overload
 
 Heading = tuple[int, int]
 Coordinate = Heading
@@ -8,11 +9,6 @@ Grid = dict[Coordinate, Block]
 
 def clean_input(inp: str) -> Grid:
     return {(x, y): val for y, row in enumerate(inp.splitlines()) for x, val in enumerate(row)}
-
-
-def turn(heading: Heading) -> Heading:
-    """Turns 90 deg right."""
-    return -heading[1], heading[0]
 
 
 def get_start(grid: Grid) -> Coordinate:
@@ -32,23 +28,26 @@ def substitute(grid: Grid, coordinate: Coordinate) -> Grid:
     return grid
 
 
-def walk(grid: Grid, p2: bool = False) -> dict[Coordinate] | bool:
-    current = get_start(grid)
-    heading = (0, -1)
+@overload
+def walk(grid: Grid) -> dict[Coordinate, list[Heading]]: ...
+@overload
+def walk(grid: Grid, p2: bool = True) -> bool: ...
+def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> dict[Coordinate, list[Heading]] | bool:
     seen: dict[Coordinate, list[Heading]] = defaultdict(list)
+    current = get_start(grid)
     while current:
-        if p2 and heading in seen[current]:  # Loop detected
+        if p2 and heading in seen[current]:  # Loop detected! Exit.
             return True
-        seen[current].append(heading)
 
+        seen[current].append(heading)
         block, next = move(grid, current, heading)
 
-        if block is None:  # No loop!
+        if block is None:  # No loop! Exit.
             return False if p2 else seen
-        elif block == "#":
-            heading = turn(heading)
+        elif block == "#":  # Turn 90 deg clockwise
+            heading = -heading[1], heading[0]
             continue
-        else:
+        else:  # Move along
             current = next
 
 
@@ -56,18 +55,11 @@ def part1(grid: Grid) -> int:
     return len(walk(grid))
 
 
-def part2(grid: Grid):
+def part2(grid: Grid) -> int:
     seen = walk(grid)
-    start = get_start(grid)
-
     # Can't put obstacle in starting point
-    seen.pop(start)
-
-    loops = 0
-    for coord in seen:
-        new_grid = substitute(grid, coord)
-        loops += walk(new_grid, p2=True)
-    return loops
+    seen.pop(get_start(grid))
+    return sum(walk(substitute(grid, coord), True) for coord in seen)
 
 
 if __name__ == "__main__":
