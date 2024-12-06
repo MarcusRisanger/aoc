@@ -1,10 +1,11 @@
 from collections import defaultdict
-from typing import overload
+from typing import Any, overload
 
 Heading = tuple[int, int]
 Coordinate = Heading
 Block = str
 Grid = dict[Coordinate, Block]
+Visited = dict[Coordinate, Any]
 
 
 def clean_input(inp: str) -> Grid:
@@ -24,26 +25,28 @@ def move(grid: Grid, coordinate: Coordinate, heading: Heading) -> tuple[Block | 
 
 def block(grid: Grid, coordinate: Coordinate) -> Grid:
     """Get copy of grid with a blocker (`#`) inserted at coordinate."""
-    return {k: "#" if k == coordinate else v for k, v in grid.items()}
+    grid = grid.copy()
+    grid[coordinate] = "#"
+    return grid
 
 
 @overload
-def walk(grid: Grid) -> dict[Coordinate, list[Heading]]: ...
+def walk(grid: Grid) -> Visited: ...
 @overload
 def walk(grid: Grid, p2: bool = True) -> bool: ...
-def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> dict[Coordinate, list[Heading]] | bool:
+def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> Visited | bool:
     """
     Walk grid turning right when faced with an obstacle (`#`).
     For p1, return visited coordinates.
     For p2, return whether the path loops.
     """
-    seen: dict[Coordinate, list[Heading]] = defaultdict(list)
+    seen: dict[Coordinate, set[Heading]] = defaultdict(set)
     current = get_start(grid)
     while True:
         if p2 and heading in seen[current]:  # Loop detected! Exit.
             return True
 
-        seen[current].append(heading)
+        seen[current].add(heading)
         block, next = move(grid, current, heading)
 
         if block is None:  # Outside grid bounds! Exit.
@@ -63,7 +66,7 @@ def part1(grid: Grid) -> int:
 
 def part2(grid: Grid) -> int:
     """Check how many choices for guard looping, if one point in path is blocked."""
-    guard_path = {k: v for k, v in walk(grid).items() if k != get_start(grid)}  # Can't put obstacle in starting point
+    guard_path = {coord for coord in walk(grid) if coord != get_start(grid)}  # Can't put obstacle in starting point
     return sum(walk(block(grid, coord), True) for coord in guard_path)
 
 

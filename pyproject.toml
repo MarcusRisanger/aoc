@@ -10,6 +10,7 @@ advent-of-code-data = "^2.0.2"
 numpy = "^1.23.5"
 matplotlib = "^3.6.2"
 colorama = "^0.4.6"
+tqdm = "^4.67.1"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.7.2"
