@@ -12,6 +12,7 @@ def clean_input(inp: str) -> Grid:
 
 
 def get_start(grid: Grid) -> Coordinate:
+    """Find coordinate of starting point (`^`) in grid."""
     return next(iter({k for k, v in grid.items() if v == "^"}))
 
 
@@ -21,11 +22,9 @@ def move(grid: Grid, coordinate: Coordinate, heading: Heading) -> tuple[Block | 
     return grid.get(new_coord), new_coord
 
 
-def substitute(grid: Grid, coordinate: Coordinate) -> Grid:
-    """Get copy of grid with a coordinate substituted."""
-    grid = grid.copy()
-    grid[coordinate] = "#"
-    return grid
+def block(grid: Grid, coordinate: Coordinate) -> Grid:
+    """Get copy of grid with a blocker (`#`) inserted at coordinate."""
+    return {k: "#" if k == coordinate else v for k, v in grid.items()}
 
 
 @overload
@@ -33,17 +32,23 @@ def walk(grid: Grid) -> dict[Coordinate, list[Heading]]: ...
 @overload
 def walk(grid: Grid, p2: bool = True) -> bool: ...
 def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> dict[Coordinate, list[Heading]] | bool:
+    """
+    Walk grid turning right when faced with an obstacle (`#`).
+    For p1, return visited coordinates.
+    For p2, return whether the path loops.
+    """
     seen: dict[Coordinate, list[Heading]] = defaultdict(list)
     current = get_start(grid)
-    while current:
+    while True:
         if p2 and heading in seen[current]:  # Loop detected! Exit.
             return True
 
         seen[current].append(heading)
         block, next = move(grid, current, heading)
 
-        if block is None:  # No loop! Exit.
+        if block is None:  # Outside grid bounds! Exit.
             return False if p2 else seen
+
         elif block == "#":  # Turn 90 deg clockwise
             heading = -heading[1], heading[0]
             continue
@@ -52,14 +57,14 @@ def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> dict[Co
 
 
 def part1(grid: Grid) -> int:
+    """Find how many tiles guard will walk on."""
     return len(walk(grid))
 
 
 def part2(grid: Grid) -> int:
-    seen = walk(grid)
-    # Can't put obstacle in starting point
-    seen.pop(get_start(grid))
-    return sum(walk(substitute(grid, coord), True) for coord in seen)
+    """Check how many choices for guard looping, if one point in path is blocked."""
+    guard_path = {k: v for k, v in walk(grid).items() if k != get_start(grid)}  # Can't put obstacle in starting point
+    return sum(walk(block(grid, coord), True) for coord in guard_path)
 
 
 if __name__ == "__main__":
