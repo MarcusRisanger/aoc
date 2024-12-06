@@ -1,47 +1,40 @@
 from collections import defaultdict
-from typing import Any, overload
+from typing import overload
 
 Heading = tuple[int, int]
-Coordinate = Heading
+Coord = Heading
 Block = str
-Grid = dict[Coordinate, Block]
-Visited = dict[Coordinate, Any]
+Grid = dict[Coord, Block]
+Visited = dict[Coord, set]
 
 
-def clean_input(inp: str) -> Grid:
-    return {(x, y): val for y, row in enumerate(inp.splitlines()) for x, val in enumerate(row)}
+def clean_input(inp: str) -> tuple[Grid, Coord]:
+    """Parse into grid and find start coordinate."""
+    grid = {(x, y): val for y, row in enumerate(inp.splitlines()) for x, val in enumerate(row)}
+    start = next(iter({k for k, v in grid.items() if v == "^"}))
+    return grid, start
 
 
-def get_start(grid: Grid) -> Coordinate:
-    """Find coordinate of starting point (`^`) in grid."""
-    return next(iter({k for k, v in grid.items() if v == "^"}))
-
-
-def move(grid: Grid, coordinate: Coordinate, heading: Heading) -> tuple[Block | None, Coordinate]:
+def move(grid: Grid, coordinate: Coord, heading: Heading) -> tuple[Block | None, Coord]:
     """Moves along heading, returning block value and coordinate."""
     new_coord = coordinate[0] + heading[0], coordinate[1] + heading[1]
     return grid.get(new_coord), new_coord
 
 
-def block(grid: Grid, coordinate: Coordinate) -> Grid:
-    """Get copy of grid with a blocker (`#`) inserted at coordinate."""
-    grid = grid.copy()
-    grid[coordinate] = "#"
-    return grid
-
-
 @overload
-def walk(grid: Grid) -> Visited: ...
+def walk(grid: Grid, start: Coord) -> Visited: ...
 @overload
-def walk(grid: Grid, p2: bool = True) -> bool: ...
-def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> Visited | bool:
+def walk(grid: Grid, start: Coord, p2: bool = True) -> bool: ...
+def walk(
+    grid: Grid, start: Coord, p2: bool = False, heading: Coord = (0, -1), blocked: Coord | None = None
+) -> Visited | bool:
     """
     Walk grid turning right when faced with an obstacle (`#`).
     For p1, return visited coordinates.
-    For p2, return whether the path loops.
+    For p2, return whether the path loops if injected coordinate is also obstacle.
     """
-    seen: dict[Coordinate, set[Heading]] = defaultdict(set)
-    current = get_start(grid)
+    seen: Visited = defaultdict(set)
+    current = start
     while True:
         if p2 and heading in seen[current]:  # Loop detected! Exit.
             return True
@@ -52,22 +45,21 @@ def walk(grid: Grid, p2: bool = False, heading: Coordinate = (0, -1)) -> Visited
         if block is None:  # Outside grid bounds! Exit.
             return False if p2 else seen
 
-        elif block == "#":  # Turn 90 deg clockwise
+        if block == "#" or next == blocked:  # Turn 90 deg clockwise
             heading = -heading[1], heading[0]
             continue
-        else:  # Move along
-            current = next
+
+        current = next  # Move along
 
 
-def part1(grid: Grid) -> int:
+def part1(grid: Grid, start: Coord) -> int:
     """Find how many tiles guard will walk on."""
-    return len(walk(grid))
+    return len(walk(grid, start))
 
 
-def part2(grid: Grid) -> int:
+def part2(grid: Grid, start: Coord) -> int:
     """Check how many choices for guard looping, if one point in path is blocked."""
-    guard_path = {coord for coord in walk(grid) if coord != get_start(grid)}  # Can't put obstacle in starting point
-    return sum(walk(block(grid, coord), True) for coord in guard_path)
+    return sum(walk(grid, start, p2=True, injected=coord) for coord in walk(grid, start) if coord != start)
 
 
 if __name__ == "__main__":
@@ -76,6 +68,7 @@ if __name__ == "__main__":
     # Get puzzle details and set up input
     puzzle = Puzzle(year=2024, day=6)
     input_data = clean_input(puzzle.input_data)
+
     # Submit answers
-    puzzle.answer_a = str(part1(input_data))
-    puzzle.answer_b = str(part2(input_data))
+    puzzle.answer_a = str(part1(*input_data))
+    puzzle.answer_b = str(part2(*input_data))
