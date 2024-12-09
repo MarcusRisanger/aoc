@@ -1,6 +1,5 @@
 Loc = int
 Id = int
-Length = int
 Addresses = list[Loc]
 Empty = list[Addresses]
 Files = dict[Id, Addresses]  # To make checksum easy
@@ -28,8 +27,9 @@ def checksum(files: Files) -> int:
 
 
 def defrag_bytes(files: Files, empty: Empty) -> Files:
+    """For each file in reverse order, move bytes leftward to empty spaces."""
     files = files.copy()
-    empty = [v for chunk in empty for v in chunk]
+    empty = [v for chunk in empty for v in chunk]  # Flatten chunks
     for file, addresses in sorted(files.items(), reverse=True):
         new_ad = [empty.pop(0) if ad > empty[0] else ad for ad in addresses[::-1]]
         files[file] = new_ad
@@ -37,6 +37,7 @@ def defrag_bytes(files: Files, empty: Empty) -> Files:
 
 
 def defrag_files(files: Files, empty: Empty) -> Files:
+    """For each file in reverse order, move leftward to empty space that can fit the whole file."""
     files, empty = files.copy(), empty.copy()
     for file, addresses in sorted(files.items(), reverse=True):
         for i, chunk in enumerate(empty):
