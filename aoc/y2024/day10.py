@@ -9,7 +9,7 @@ def clean_input(inp: str) -> Grid:
 
 
 def get_neighbors(current: Coord, grid: Grid) -> set[Coord]:
-    """Get neighbors in all cardinal directions."""
+    """Get neighbors in all cardinal directions, that are present in grid."""
     ns = ((0, 1), (0, -1), (1, 0), (-1, 0))
     neighbors = {(current[0] + n[0], current[1] + n[1]) for n in ns}
     return set(filter(grid.get, neighbors))
@@ -17,15 +17,12 @@ def get_neighbors(current: Coord, grid: Grid) -> set[Coord]:
 
 def count_paths(start: Coord, grid: Grid, ends: set[Coord]) -> int:
     """BFS for paths that increase in height by exactly 1."""
+    neighbors = {n for n in get_neighbors(start, grid) if grid[n] - grid[start] == 1}
     if grid[start] == 8:
-        neighbors = {n for n in get_neighbors(start, grid) if grid[n] == 9}
         ends.update(neighbors)
-        return sum(1 for n in get_neighbors(start, grid) if grid[n] == 9)
+        return len(neighbors)
 
-    to_check = {n for n in get_neighbors(start, grid) if grid[n] - grid[start] == 1}
-    if to_check:
-        return sum(count_paths(cand, grid, ends) for cand in to_check)
-    return 0
+    return sum(count_paths(n, grid, ends) for n in neighbors)
 
 
 def parts(grid: Grid) -> tuple[int, int]:
