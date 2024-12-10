@@ -11,16 +11,15 @@ def clean_input(inp: str) -> Grid:
 def get_neighbors(current: Coord, grid: Grid) -> set[Coord]:
     """Get neighbors in all cardinal directions, that are present in grid."""
     ns = ((0, 1), (0, -1), (1, 0), (-1, 0))
-    neighbors = {(current[0] + n[0], current[1] + n[1]) for n in ns}
-    return set(filter(grid.get, neighbors))
+    return set(filter(grid.get, ((current[0] + n[0], current[1] + n[1]) for n in ns)))
 
 
 def count_paths(start: Coord, grid: Grid, ends: set[Coord]) -> int:
     """BFS for paths that increase in height by exactly 1."""
     neighbors = {n for n in get_neighbors(start, grid) if grid[n] - grid[start] == 1}
     if grid[start] == 8:
-        ends.update(neighbors)
-        return len(neighbors)
+        ends.update(neighbors)  # Get distinct end nodes
+        return len(neighbors)  # Count all paths
 
     return sum(count_paths(n, grid, ends) for n in neighbors)
 
