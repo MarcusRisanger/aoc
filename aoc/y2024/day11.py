@@ -23,14 +23,14 @@ def blink(stones: Stones) -> Stones:
     """Performs a blink."""
     new_stones = defaultdict(Count)
     for engraving, count in stones.items():
-        if engraving == 0:
+        if engraving == 0:  # Carry over to engraving 1
             new_stones[1] += count
-        elif len(str(engraving)) % 2 == 0:
+        elif len(str(engraving)) % 2 == 0:  # Split stone
             a, b = split(engraving)
             new_stones[a] += count
             new_stones[b] += count
-        else:
-            new_stones[engraving * 2024] = count
+        else:  # Replace stone with n*2024
+            new_stones[engraving * 2024] += count
     return new_stones
 
 
