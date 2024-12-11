@@ -26,9 +26,8 @@ def blink(stones: Stones) -> Stones:
         if engraving == 0:  # Carry over to engraving 1
             new_stones[1] += count
         elif len(str(engraving)) % 2 == 0:  # Split stone
-            a, b = split(engraving)
-            new_stones[a] += count
-            new_stones[b] += count
+            for i in split(engraving):
+                new_stones[i] += count
         else:  # Replace stone with n*2024
             new_stones[engraving * 2024] += count
     return new_stones
