@@ -59,7 +59,7 @@ def part1(grid: Grid, start: Coord) -> int:
 
 def part2(grid: Grid, start: Coord) -> int:
     """Check how many choices for guard looping, if one point in path is blocked."""
-    return sum(walk(grid, start, p2=True, injected=coord) for coord in walk(grid, start) if coord != start)
+    return sum(walk(grid, start, p2=True, blocked=coord) for coord in walk(grid, start) if coord != start)
 
 
 if __name__ == "__main__":
