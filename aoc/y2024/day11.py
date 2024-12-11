@@ -7,7 +7,7 @@ Stones = dict[Engraving, Count]
 
 def clean_input(inp: str) -> Stones:
     """Parse into stones."""
-    stones = defaultdict(int)
+    stones: Stones = defaultdict(int)
     for i in map(int, inp.split()):
         stones[i] += 1
     return stones
@@ -21,7 +21,7 @@ def split(engraving: Engraving) -> tuple[Engraving, Engraving]:
 
 def blink(stones: Stones) -> Stones:
     """Performs a blink."""
-    new_stones = defaultdict(Count)
+    new_stones: Stones = defaultdict(Count)
     for engraving, count in stones.items():
         if engraving == 0:  # Carry over to engraving 1
             new_stones[1] += count
