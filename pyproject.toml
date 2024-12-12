@@ -11,6 +11,8 @@ numpy = "^1.23.5"
 matplotlib = "^3.6.2"
 colorama = "^0.4.6"
 tqdm = "^4.67.1"
+shapely = "^2.0.6"
+scikit-image = "^0.24.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.7.2"
