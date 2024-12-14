@@ -19,12 +19,7 @@ class Robot:
     vy: int
 
     def move(self) -> None:
-        x = (self.x + self.vx) % W
-        y = (self.y + self.vy) % H
-        self.x, self.y = x, y
-
-    def at(self) -> int:
-        pass
+        self.x, self.y = (self.x + self.vx) % W, (self.y + self.vy) % H
 
 
 @dataclass
