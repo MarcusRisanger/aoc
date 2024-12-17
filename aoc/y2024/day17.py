@@ -14,7 +14,8 @@ def run(instructions: list[int], A: int, B: int, C: int) -> list[int]:
         opcode, operand = instructions[pointer : pointer + 2]
         match opcode:
             case 0:
-                A = A // 2 ** reg[operand]
+                # Same as A // 2 ** reg[operand]
+                A = A >> reg[operand]
             case 1:
                 B = B ^ operand
             case 2:
@@ -26,9 +27,9 @@ def run(instructions: list[int], A: int, B: int, C: int) -> list[int]:
             case 5:
                 out.append(reg[operand] % 8)
             case 6:
-                B = A // 2 ** reg[operand]
+                B = A >> reg[operand]
             case 7:
-                C = A // 2 ** reg[operand]
+                C = A >> reg[operand]
         pointer += 2
 
     return out
