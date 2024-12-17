@@ -6,41 +6,29 @@ def clean_input(inp: str) -> tuple[list[int], int, int, int]:
     return inst, a, b, c
 
 
-def get_combo(combo, A: int, B: int, C: int) -> int:
-    if combo in (0, 1, 2, 3):
-        return int(combo)
-    elif combo == 4:
-        return A
-    elif combo == 5:
-        return B
-    elif combo == 6:
-        return C
-    else:
-        raise
-
-
 def run(instructions: list[int], A: int, B: int, C: int) -> list[int]:
     pointer = 0
     out: list[int] = []
     while pointer < len(instructions):
-        opcode, combo = instructions[pointer : pointer + 2]
+        reg = {0: 0, 1: 1, 2: 2, 3: 3, 4: A, 5: B, 6: C}
+        opcode, operand = instructions[pointer : pointer + 2]
         match opcode:
             case 0:
-                A = A // 2 ** get_combo(combo, A, B, C)
+                A = A // 2 ** reg[operand]
             case 1:
-                B = B ^ combo
+                B = B ^ operand
             case 2:
-                B = get_combo(combo, A, B, C) % 8
+                B = reg[operand] % 8
             case 3:
-                pointer = combo - 2 if A else pointer
+                pointer = operand - 2 if A else pointer
             case 4:
                 B = B ^ C
             case 5:
-                out.append(get_combo(combo, A, B, C) % 8)
+                out.append(reg[operand] % 8)
             case 6:
-                B = A // 2 ** get_combo(combo, A, B, C)
+                B = A // 2 ** reg[operand]
             case 7:
-                C = A // 2 ** get_combo(combo, A, B, C)
+                C = A // 2 ** reg[operand]
         pointer += 2
 
     return out
