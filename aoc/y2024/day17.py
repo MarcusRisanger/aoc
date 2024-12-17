@@ -55,7 +55,7 @@ def part2(instructions) -> int:
 
     We check A=42..49 and A=47..54 for program outputs of [5,3,0] .. etc.
 
-    When we are at the last digit, we will have several values for A that satisfy
+    When we are at the last index, we will have several values for A that satisfy
     the requirement, so we put all A's into a list and return the smallest value.
     """
 
