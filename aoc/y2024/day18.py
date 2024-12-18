@@ -16,7 +16,7 @@ def clean_input(inp: str) -> tuple[Grid, tuple[Coord, ...]]:
     return Grid({(x, y): 1 for y in range(MAX + 1) for x in range(MAX + 1)}), blockers  # type: ignore
 
 
-def find(grid: Grid, blockers: tuple[Coord], bytes: int) -> int:  # type: ignore[return]
+def find(grid: Grid, blockers: tuple[Coord, ...], bytes: int) -> int:  # type: ignore[return]
     """
     Traverse grid from start to end using Dijkstras algorithm.
 
