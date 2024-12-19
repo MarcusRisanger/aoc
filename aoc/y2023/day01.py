@@ -51,5 +51,5 @@ if __name__ == "__main__":
     input_data = clean_input(puzzle.input_data)
 
     # Submit answers
-    puzzle.answer_a = part1(input_data)
-    puzzle.answer_b = part2(input_data)
+    puzzle.answer_a = str(part1(input_data))
+    puzzle.answer_b = str(part2(input_data))
