@@ -13,12 +13,12 @@ def clean_input(inp: str) -> tuple[list[Recipe], tuple[Towel, ...]]:
 def possible(recipe: str, towels: tuple[str, ...]):
     if not recipe:
         return True
-    return sum(possible(recipe[len(towel) :], towels) for towel in towels if recipe.startswith(towel))
+    return sum(possible(recipe.removeprefix(t), towels) for t in towels if recipe.startswith(t))
 
 
 def part1(recipes: list[Recipe], towels: tuple[Towel, ...]) -> int:
     func = partial(possible, towels=towels)
-    return sum(1 for res in map(func, recipes) if res)
+    return sum(1 for r in map(func, recipes) if r)
 
 
 def part2(recipes: list[Recipe], towels: tuple[Towel, ...]) -> int:
