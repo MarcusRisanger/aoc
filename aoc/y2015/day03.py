@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 Coord = tuple[int, int]
 Heading = Coord
 Move = str
