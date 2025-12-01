@@ -1,9 +1,10 @@
-from colorama.ansi import AnsiBack
+from typing import Any, Literal
 from colorama import Back
 import os
+from collections.abc import Mapping, Sequence
 
 
-def grid_print(grid: list[str | list[str]], clear: bool = True) -> None:
+def grid_print(grid: Sequence[str | list[str]], clear: bool = True) -> None:
     if clear:
         os.system("cls")
     for row in grid:
@@ -13,7 +14,7 @@ def grid_print(grid: list[str | list[str]], clear: bool = True) -> None:
 
 
 def colorize(
-    grid: list[list[str]], highlight: set[tuple[int, int]], color: AnsiBack = Back.GREEN
+    grid: list[list[str]], highlight: set[tuple[int, int]], color: str = Back.GREEN
 ) -> list[list[str]]:
     """
     Colorize a grid with highlighted row/col coordinates.
@@ -37,7 +38,10 @@ def colorize(
     return grid
 
 
-def neighbors(x: int, y: int, **kw) -> list[tuple[int, int]]:
+Point = tuple[int, int]
+
+
+def neighbors(point: Point, **kw) -> list[tuple[int, int]]:
     """Returns grid neighbors.
 
     Default: Left/right/up/down
@@ -47,6 +51,7 @@ def neighbors(x: int, y: int, **kw) -> list[tuple[int, int]]:
           - "diagonal" for all diagonal neighbors
           - "box-self" for all neighbors including self
     """
+    x, y = point
     up_down = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
     diag = [(x + 1, y + 1), (x + 1, y - 1), (x - 1, y - 1), (x - 1, y + 1)]
 
@@ -59,3 +64,12 @@ def neighbors(x: int, y: int, **kw) -> list[tuple[int, int]]:
             return up_down + diag + [(x, y)]
 
     return up_down
+
+
+def extract_neighbors(
+    point: Point,
+    grid: Mapping[Point, Any],
+    shape: Literal["box", "diagonal", "box-self"],
+) -> list[Point]:
+    """Only get neighbors that can be found in grid."""
+    return [*filter(grid.get, neighbors(point, shape=shape))]

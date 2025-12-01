@@ -2,6 +2,12 @@
 
 Collection of my attempts at doing some Advent of Code challenges in Python.
 
+## 2025 AOC
+
+| Day | Comment
+|-----| ----
+| 1   | Rough start, couldn't get the logic nailed down today, spent way too long, but kept on grinding!
+
 ## 2023 AOC
 
 | Day   | Comment
@@ -19,6 +25,8 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 11    | Much easier than day 10! The shortest path is just the sum of absolute difference in number of rows and columns between each point. By first evaluating which rows and columns are subject to spatial expansion, you can loop over the `range(min, max)` for rows/columns and sum 1 per "non-expanded" row/column and sum whatever expansion factor for the spatially challenged rows/columns - in part 1 that is 2, in part 2 that is 1 million.
 | 12    | Brute forced part 1 but that was not possible for part 2. I looked at the subreddit for inspiration and struggled understanding this problem (I am not a developer after all!) until I found a [great writeup](https://advent-of-code.xavd.id/writeups/2023/day/12/) by [David Brownman](https://github.com/xavdid). This broke down the problem into understandable chunks - a lot of the solutions in the AOC megathreads are written "shorthand" and with some flair - so deciphering what happens is often difficult, so it's great to have found this resource for future reference!
 | 13    | This problem was not that difficult. The most troublesome part was to get the generator that yielded mirror slices right. I rewrote a bit for part 2 to solve generally with X expected flaws - on the assumption that all tiles would have mirror locations changed, and that none of the part 1 values were correct.
+| 14    | Part 1 was easy with some regex magic! Part 2 was also OK using some looping. This solution could probably be optimized **a lot**.
+| 15    | Fairly straightforward with `defaultdict` and some light regexing.
 
 
 ## 2022 AOC 
@@ -57,3 +65,23 @@ Collection of my attempts at doing some Advent of Code challenges in Python.
 | 12    | Had to refactor my initial solution after seeing `/u/4HbQ`s solution on Reddit. I find recursion hard and this was a great example for me to understand.
 | 13    | Numpy is still difficult, but refactoring my old solutions from last year is helping.
 | 14    | Interesting exercise with dictionary abuse. First time I did this last year I created new strings like in the cheeky example but hit a brick wall for part 2.. obviously..
+
+## 2020 AOC
+
+| Day   | Comment 
+|-------|---------
+| 1     | Solved using generator expressions and `next` to get the first element.
+| 2     | Regex to get rules, looped over the input once to get parts 1 and 2 in one go.
+| 3     | Hardest part here was to "extend" the map rightwards as the input was exhausted.
+| 4     | Regex again to identify valid passports.
+| 5     | First task where the input could be translated to a binary representation of an integer. Used set operations to get the missing seat ID between min and max.
+| 6     | Interesting exercise to count member occurrences within groups. I wrote something ugly that worked, and then refined to use set operations for this instead, based on the solutions in `norvig`'s `pytudes` solution collection.
+| 7     | Recursion time! Here it wasn't that challenging to find a solution, but to find a *nice* solution took some time.
+| 8     | Following instructions! Not difficult. Brute forced part 2 by looping over the program and switching `jmp`/`nop` commands.
+| 9     | Leveraging itertools for part 1 and a "crawl" over the sequence (1 pass) for part 2.
+| 10    | Part 1 was solved with a quick `zip` and part 2 was solved recursively by summing up ways to reach a given adapter.
+| 11    | Traversal for part 2 was tricky. Purposefully did not remove flooring from the layout grid to have an easy "out" to check whether a position after applying vector was outside the grid.
+| 12    | A nice application for `match case` - the most tricky part for me was the `turn`... Been too long since trigonometry class? 
+| 13    | Tricky looping here for part 2. Gradually increasing step sizes to find convergence across all buses.
+| 14    | Mucking around a bit with padding for generating 36 bit integers. Borrowed the very neat `str.format()` trick from `norvig`.
+| 15    | Just implemented the instructions.

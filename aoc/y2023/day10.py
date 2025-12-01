@@ -157,21 +157,22 @@ def count_enclosed(
     return enclosed
 
 
-def part1(inp: str) -> int:
+def part1(inp: str) -> str:
     pipes = transform_input(inp)
-    return len(traverse_pipe(pipes)) // 2
+    return str(len(traverse_pipe(pipes)) // 2)
 
 
-def part2(inp: str) -> int:
+def part2(inp: str) -> str:
     pipes = transform_input(inp)
     seen = traverse_pipe(pipes)
-    return len(
+    val = len(
         count_enclosed(
             pipes,
             seen,
             # True, # For printing result
         )
     )
+    return str(val)
 
 
 if __name__ == "__main__":

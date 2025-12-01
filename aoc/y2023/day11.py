@@ -65,12 +65,12 @@ def shortest_paths(inp: str, factor: int = 2) -> int:
     return sum_shortest_paths(galaxies, row_exp, col_exp, factor)
 
 
-def part1(inp: str) -> int:
-    return shortest_paths(inp)
+def part1(inp: str) -> str:
+    return str(shortest_paths(inp))
 
 
-def part2(inp: str) -> int:
-    return shortest_paths(inp, 1_000_000)
+def part2(inp: str) -> str:
+    return str(shortest_paths(inp, 1_000_000))
 
 
 if __name__ == "__main__":

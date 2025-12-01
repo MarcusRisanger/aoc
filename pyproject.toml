@@ -1,21 +1,33 @@
-[tool.poetry]
+[project]
 name = "aoc"
 version = "0.1.0"
 description = ""
-authors = ["Marcus Risanger <69350948+MarcusRisanger@users.noreply.github.com>"]
+authors = [
+    { name = "Marcus Risanger", email = "69350948+MarcusRisanger@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "advent-of-code-data>=2.0.2",
+    "numpy>=1.23.5",
+    "matplotlib>=3.6.2",
+    "colorama>=0.4.6",
+    "tqdm>=4.67.1",
+    "shapely>=2.0.6",
+    "scikit-image>=0.24.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-advent-of-code-data = "^2.0.2"
-numpy = "^1.23.5"
-matplotlib = "^3.6.2"
-colorama = "^0.4.6"
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.7.2",
+    "ipykernel>=6.18.3",
+    "pytest>=7.2.0",
+    "types-colorama>=0.4.15.20240311",
+]
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.7.2"
-ipykernel = "^6.18.3"
-pytest = "^7.2.0"
+[tool.ruff]
+line-length = 120
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "dotenv>=0.9.9",
+]

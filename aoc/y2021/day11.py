@@ -3,10 +3,15 @@ AOC 2021, Day 11:
   - Keeping track of neighbors and flashing
   - Parts 1 and 2 implements the same code with different exits
 """
-from aoc.utils import neighbors as n
+
+from aoc.utils import neighbors as n, extract_neighbors
+
+Octopus = tuple[int, int]
+Level = int
+Octopi = dict[Octopus, Level]
 
 
-def clean_input(input_data: str) -> dict[tuple[int, int], int]:
+def clean_input(input_data: str) -> Octopi:
     """Prepares octopi grid using x, y coordinates and initial value."""
     return {
         (x, y): int(val)
@@ -15,14 +20,12 @@ def clean_input(input_data: str) -> dict[tuple[int, int], int]:
     }
 
 
-def get_octopi(x: int, y: int, octopi: dict[tuple[int, int]]) -> list[tuple[int, int]]:
-    """Returns the neighboring octopi (incl. diagonal).
-    Note that filter(octopi.get, []) does not return octopi
-    where their value is 0 (filtered as falsy)."""
-    return filter(octopi.get, n(x, y, shape="box"))
+def get_octopi(octo: Octopus, octopi: Octopi) -> list[Octopus]:
+    """Returns the neighboring octopi (incl. diagonal)."""
+    return extract_neighbors(octo, octopi, shape="box")
 
 
-def octopi_flashes(octopi: dict[tuple[int, int]]) -> tuple[int, int]:
+def octopi_flashes(octopi: Octopi) -> tuple[str, str]:  # type: ignore[return]
     flashes = 0
     for cycle in range(1, 1000):
         # Increment all octopi
@@ -37,16 +40,16 @@ def octopi_flashes(octopi: dict[tuple[int, int]]) -> tuple[int, int]:
             octopi[i] = 0
             flashes += 1
             # Incrementing neighbors that are != 0
-            for n in get_octopi(*i, octopi):
-                octopi[n] += 1
+            for neighbor in get_octopi(i, octopi):
+                octopi[neighbor] += 1
                 # If neighbor is pushed to flash, add to set
-                if octopi[n] > 9:
-                    flashing.add(n)
+                if octopi[neighbor] > 9:
+                    flashing.add(neighbor)
 
         if cycle == 100:
             part1 = flashes
         if sum(octopi.values()) == 0:
-            return part1, cycle
+            return str(part1), str(cycle)
 
 
 if __name__ == "__main__":
