@@ -32,37 +32,34 @@ dependencies = [
     { name = "tqdm" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
+    { name = "dotenv" },
     { name = "ipykernel" },
     { name = "pytest" },
     { name = "ruff" },
     { name = "types-colorama" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "dotenv" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "advent-of-code-data", specifier = ">=2.0.2" },
     { name = "colorama", specifier = ">=0.4.6" },
-    { name = "ipykernel", marker = "extra == 'dev'", specifier = ">=6.18.3" },
     { name = "matplotlib", specifier = ">=3.6.2" },
     { name = "numpy", specifier = ">=1.23.5" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.2.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.7.2" },
     { name = "scikit-image", specifier = ">=0.24.0" },
     { name = "shapely", specifier = ">=2.0.6" },
     { name = "tqdm", specifier = ">=4.67.1" },
-    { name = "types-colorama", marker = "extra == 'dev'", specifier = ">=0.4.15.20240311" },
 ]
-provides-extras = ["dev"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "dotenv", specifier = ">=0.9.9" }]
+dev = [
+    { name = "dotenv" },
+    { name = "ipykernel", specifier = ">=6.18.3" },
+    { name = "pytest", specifier = ">=7.2.0" },
+    { name = "ruff", specifier = ">=0.7.2" },
+    { name = "types-colorama", specifier = ">=0.4.15.20240311" },
+]
 
 [[package]]
 name = "aocd-example-parser"
